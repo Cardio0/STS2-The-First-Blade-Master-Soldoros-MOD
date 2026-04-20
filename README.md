@@ -4,6 +4,8 @@
 
 ![mod preview](Soldoros/mod_image.png)
 
+![mod preview](Soldoros/SummarySoldoros.png)
+
 ---
 
 ## 소개
