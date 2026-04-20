@@ -4,7 +4,7 @@
 
 ![mod preview](Soldoros/mod_image.png)
 
-![mod preview](Soldoros/SummarySoldoros.png)
+![mod preview2](Soldoros/SummarySoldoros.png)
 
 ---
 
