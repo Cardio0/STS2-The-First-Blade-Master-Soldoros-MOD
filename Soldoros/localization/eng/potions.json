@@ -1,0 +1,13 @@
+{
+  "SOLDOROS-REMYS_TOUCH.title": "Remy's Touch",
+  "SOLDOROS-REMYS_TOUCH.description": "Heal for {HealPercent}% of your max HP.\nGain {Energy:energyIcons()}.",
+  "SOLDOROS-REMYS_TOUCH.flavor": "\"A warm touch soothes all wounds.\"",
+
+  "SOLDOROS-DANJINS_POT.title": "Danjin's Pot",
+  "SOLDOROS-DANJINS_POT.description": "Add [gold]Flowing Stance[/gold]\nRise, Swift, and Clash to your hand.",
+  "SOLDOROS-DANJINS_POT.flavor": "\"A mysterious brew by Danjin. Drinking it makes sword energy flow.\"",
+
+  "SOLDOROS-SHARP_EYE_POTION.title": "Sharp-Eye Potion",
+  "SOLDOROS-SHARP_EYE_POTION.description": "Triple the [gold]Vulnerable[/gold]\nstacks of ALL enemies.",
+  "SOLDOROS-SHARP_EYE_POTION.flavor": "\"Your eyes feel sharper than ever.\""
+}

@@ -1,0 +1,33 @@
+﻿{
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.title": "에고소드 클라리스",
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.description": "매 전투 시작 시, [gold]에고소드 클라리스[/gold]를\n[gold]손[/gold]으로 가져옵니다.",
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.flavor": "\"클레어라는 여성의 혼이 담겨 있다고 하며, 솔도로스와 관계가 있는지는 불명이다.\"",
+
+  "SOLDOROS-WEAPON_SELECTOR.title": "웨펀셀렉터",
+  "SOLDOROS-WEAPON_SELECTOR.description": "7번의 전투가 끝날 때마다,\n무작위 유물을 1개 얻습니다.",
+  "SOLDOROS-WEAPON_SELECTOR.flavor": "\"주변의 무기와 공명하여 엄청난 힘을 낸다는 전설의 방어구\"",
+
+  "SOLDOROS-DEMON_SLAVE.title": "데몬 슬레이브",
+  "SOLDOROS-DEMON_SLAVE.description": "매 전투 시작 시 체력을 2 잃습니다.\n[gold]힘[/gold]을 2 얻습니다.",
+  "SOLDOROS-DEMON_SLAVE.flavor": "\"정신이… 윽… 미쳐버릴꺼 같아.\"",
+
+  "SOLDOROS-GOLDEN_HAMMER.title": "힘센 난장이의 황금 망치",
+  "SOLDOROS-GOLDEN_HAMMER.description": "획득 시, 비용이 2 이상인\n무작위 카드 3장을 강화합니다.",
+  "SOLDOROS-GOLDEN_HAMMER.flavor": "\"무겁지만 파괴력 한번 대단한데?\"",
+
+  "SOLDOROS-HELLO_GUISH.title": "헬로 구위시",
+  "SOLDOROS-HELLO_GUISH.description": "[gold]약화[/gold]를 부여할 때마다,\n[gold]취약[/gold]을 부여합니다.",
+  "SOLDOROS-HELLO_GUISH.flavor": "\"얼음 마법을 다루는 요정 구위시의 축복이 깃들어있다.\"",
+
+  "SOLDOROS-SOLDOROS_DECISION.title": "솔도로스의 선택",
+  "SOLDOROS-SOLDOROS_DECISION.description": "매 전투 시작 시,\n보유한 유물 5개마다 [gold]힘[/gold]을 1 얻습니다.",
+  "SOLDOROS-SOLDOROS_DECISION.flavor": "\"너한테는 이걸 쓰는게 좋겠구나. -솔도로스-\"",
+
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.title": "무형검 엘레노어",
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.description": "[gold]방어도[/gold]를 보유한 적에게 사용하는\n공격 카드의 피해량이 2배로 증가합니다.",
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.flavor": "\"정해진 형태가 없기 때문에 막았다고 생각한 순간 피해를 입고 만다.\"",
+
+  "SOLDOROS-HALGIS_BONE_RING.title": "할기의 본링",
+  "SOLDOROS-HALGIS_BONE_RING.description": "공격할 의도가 있는 적 상대로 사용하는\n공격 카드의 피해량이 25% 증가합니다.",
+  "SOLDOROS-HALGIS_BONE_RING.flavor": "\"인생 한 방! 뭐 있겠나! 어줍지 않게 두 번, 세 번 할 필요 있나. 오직 한 번이면 족한거야. - 카곤\""
+}

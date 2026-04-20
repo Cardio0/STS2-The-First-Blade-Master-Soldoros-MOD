@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://soldoros_card_trail"]
+
+[ext_resource type="Script" uid="uid://b5i5g4l7ubk21" path="res://SoldorosCode/Nodes/SNCardTrailVfx.cs" id="1_root"]
+[ext_resource type="Script" uid="uid://dawxgrvr076ky" path="res://SoldorosCode/Nodes/SNCardTrail.cs" id="2_trail"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_additive"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_outer_width"]
+_data = [Vector2(0, 0.111037), 0.0, 0.0, 0, 0, Vector2(0.839578, 0.663793), -2.61019, -2.61019, 0, 0, Vector2(0.922468, 0.94341), 0.0, 0.0, 0, 0, Vector2(1, 0.685611), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_outer"]
+offsets = PackedFloat32Array(0, 0.141431, 0.522463)
+colors = PackedColorArray(0, 0, 0, 0, 0.137255, 0.090196, 0.035294, 0.305882, 0.274510, 0.180392, 0.070588, 1)
+
+[sub_resource type="Curve" id="Curve_inner_width"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.801075, 0.571397), -3.15833, -3.15833, 0, 0, Vector2(0.900922, 0.367031), 0.0, 0.0, 0, 0, Vector2(0.938291, 0.930834), 0.0, 0.0, 0, 0, Vector2(1, 0.742201), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_inner"]
+offsets = PackedFloat32Array(0.261231, 0.647255, 0.821549)
+colors = PackedColorArray(0, 0, 0, 0, 0.137255, 0.090196, 0.035294, 0.305882, 0.274510, 0.180392, 0.070588, 1)
+
+[node name="CardTrailSoldoros" type="Node2D"]
+show_behind_parent = true
+script = ExtResource("1_root")
+
+[node name="Trails" type="Node2D" parent="."]
+
+[node name="OuterTrail" type="Line2D" parent="Trails"]
+modulate = Color(0.137255, 0.090196, 0.035294, 0.752941)
+material = SubResource("CanvasItemMaterial_additive")
+width = 96.0
+width_curve = SubResource("Curve_outer_width")
+default_color = Color(1, 1, 1, 0.752941)
+gradient = SubResource("Gradient_outer")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("2_trail")
+
+[node name="InnerTrail" type="Line2D" parent="Trails"]
+modulate = Color(0.274510, 0.180392, 0.070588, 0.501961)
+material = SubResource("CanvasItemMaterial_additive")
+width = 64.0
+width_curve = SubResource("Curve_inner_width")
+default_color = Color(1, 1, 1, 0.501961)
+gradient = SubResource("Gradient_inner")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("2_trail")
+
+[node name="Sprites" type="Node2D" parent="."]

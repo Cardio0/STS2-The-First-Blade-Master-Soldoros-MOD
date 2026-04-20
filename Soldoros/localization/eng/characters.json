@@ -1,0 +1,16 @@
+{
+  "SOLDOROS-SOLDOROS.title": "Soldoros, the First Weapon Master",
+  "SOLDOROS-SOLDOROS.titleObject": "Soldoros, the First Weapon Master",
+  "SOLDOROS-SOLDOROS.description": "A master of blades who walks the path of true combat.\nWields ancient sword techniques to cut down all foes.",
+  "SOLDOROS-SOLDOROS.pronounSubject": "he",
+  "SOLDOROS-SOLDOROS.pronounObject": "him",
+  "SOLDOROS-SOLDOROS.pronounPossessive": "his",
+  "SOLDOROS-SOLDOROS.possessiveAdjective": "his",
+  "SOLDOROS-SOLDOROS.goldMonologue": "[sine]These riches will fund my training...[/sine]",
+  "SOLDOROS-SOLDOROS.eventDeathPrevention": "I will not fall here. Not yet.",
+  "SOLDOROS-SOLDOROS.aromaPrinciple": "[sine]The blade is an extension of the soul...[/sine]",
+  "SOLDOROS-SOLDOROS.cardsModifierTitle": "Soldoros Cards",
+  "SOLDOROS-SOLDOROS.cardsModifierDescription": "Soldoros cards will now appear in rewards and shops.",
+  "SOLDOROS-SOLDOROS.banter.alive.endTurnPing": "En garde.",
+  "SOLDOROS-SOLDOROS.banter.dead.endTurnPing": "..."
+}

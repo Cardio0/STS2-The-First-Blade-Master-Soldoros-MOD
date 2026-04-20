@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://yghpr5vrdka7"]
+
+[ext_resource type="Script" uid="uid://cqrdxxdwm1m7c" path="res://SoldorosCode/Nodes/SNCreatureVisuals.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b4blaqi5lmysx" path="res://Soldoros/images/character/soldoros_normal.png" id="2_texture"]
+
+[node name="Soldoros" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Visuals" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+position = Vector2(-20, -200)
+scale = Vector2(-0.45, 0.45)
+texture = ExtResource("2_texture")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -300.0
+offset_right = 150.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -150)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -330)

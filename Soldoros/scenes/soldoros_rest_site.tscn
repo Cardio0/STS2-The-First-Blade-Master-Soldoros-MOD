@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://c38aysvxdcgqw"]
+
+[ext_resource type="Script" uid="uid://lsmpxvjrq2mx" path="res://SoldorosCode/Nodes/SNRestSiteCharacter.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d4fmmrvtb5r6c" path="res://Soldoros/images/character/soldoros_sitting.png" id="2_texture"]
+
+[node name="SoldorosRestSite" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -180)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_texture")
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectionReticle" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -181.5
+offset_top = -354.0
+offset_right = 108.5
+offset_bottom = 9.0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 107.0
+offset_top = -333.0
+offset_right = 107.0
+offset_bottom = -333.0
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -334.0
+offset_right = -150.0
+offset_bottom = -334.0

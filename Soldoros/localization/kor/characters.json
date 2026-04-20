@@ -1,0 +1,16 @@
+{
+  "SOLDOROS-SOLDOROS.title": "퍼스트 웨펀마스터 솔도로스",
+  "SOLDOROS-SOLDOROS.titleObject": "퍼스트 웨펀마스터 솔도로스",
+  "SOLDOROS-SOLDOROS.description": "수천 수만의 무기를 다룰 수 있다고 하는\n전설의 검사이자 웨펀마스터.\n오로지 검술만을 연마하고 강한 자와의 대결에만\n관심을 보였다고 한다.",
+  "SOLDOROS-SOLDOROS.pronounSubject": "그",
+  "SOLDOROS-SOLDOROS.pronounObject": "그를",
+  "SOLDOROS-SOLDOROS.pronounPossessive": "그의",
+  "SOLDOROS-SOLDOROS.possessiveAdjective": "그의",
+  "SOLDOROS-SOLDOROS.goldMonologue": "[sine]이 재물로 더 강한 검을 벼릴 수 있겠군...[/sine]",
+  "SOLDOROS-SOLDOROS.eventDeathPrevention": "여기서 쓰러질 수는 없다.",
+  "SOLDOROS-SOLDOROS.aromaPrinciple": "[sine]검은 곧 혼이다...[/sine]",
+  "SOLDOROS-SOLDOROS.cardsModifierTitle": "솔도로스 카드",
+  "SOLDOROS-SOLDOROS.cardsModifierDescription": "솔도로스 카드가 보상과 상점에 등장합니다.",
+  "SOLDOROS-SOLDOROS.banter.alive.endTurnPing": "덤벼라.",
+  "SOLDOROS-SOLDOROS.banter.dead.endTurnPing": "..."
+}

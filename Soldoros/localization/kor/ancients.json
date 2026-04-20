@@ -1,0 +1,94 @@
+{
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-0r.char": "검으로 대화하지.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-0r.next": "검의 대화",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-1r.ancient": "검의 달인이라... 흥미롭군.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-attack": "Both",
+
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-0r.char": "다시 왔다. 이번엔 전력으로 덤벼라.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-0r.next": "검의 대화",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-1r.ancient": "흥... 한 번 더 상대해 주지.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-attack": "Both",
+
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-0r.char": "이곳에서 쌓은 힘, 모두 받아내라.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-0r.next": "검의 대화",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-1r.ancient": "...매번 더 강해지는군.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-attack": "Both",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "...검사가 왔군. 상처부터 치료해 주지.",
+  "NEOW.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "...다시 탑을 오르는군. 수련을 멈추지 않는군.",
+  "NEOW.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.2-0r.ancient": "...또 왔군. 지칠 줄을 모르는군.",
+  "NEOW.talk.SOLDOROS-SOLDOROS.2-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "오! 그 많은 무기들... 진짜 웨펀마스터로군요!",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-0r.next": "...",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-1r.char": "...어디 한번 보지.",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "어서 오세요! 오늘도 좋은 물건 골라드릴게요.",
+  "DARV.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "매번 더 강해지시는 것 같은데... 저도 덩달아 긴장이 되네요.",
+  "DARV.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "호오... 처음 보는 얼굴이군. 뭔가 특별한 걸 원하나?",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "또 왔군. 마음에 드는 게 있으면 가져가.",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "이젠 얼굴이 익숙해졌군... 뭘 원하는지도 알 것 같아.",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "웨펀마스터가 어떤 무기를 지니고 있는지 궁금하군.",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-0r.next": "...",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-1r.char": "강해지는 데 도움이 된다면 고려하지.",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "다시 왔군. 이번엔 어떤 거래를 원하나?",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "자네와의 거래는 언제나 흥미롭군.",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "처음이군. 무엇을 찾고 있나, 검사여?",
+  "PAEL.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "돌아왔군. 지난번 것은 쓸 만했나?",
+  "PAEL.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "이제 단골이 된 건가.",
+  "PAEL.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "오오! 처음 보는 얼굴이군. 뭐가 필요한가?",
+  "TANX.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "또 왔군! 이번엔 뭘 가져가려고?",
+  "TANX.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "이젠 네 취향을 알 것 같아. 어디 봐볼까.",
+  "TANX.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "어머, 처음 보는 손님이군요. 뭔가 드실 것 좀 드릴까요?",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-0r.next": "...",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-1r.char": "...감사하다.",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "또 오셨군요. 이번에도 드실 것 준비해 두었어요.",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "역시 오셨네요. 드셔야 싸우죠.",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "...오, 검사. 필요한 게 있다면 말해.",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "...다시 왔군. 이번엔 뭘 원하나.",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "...매번 오는군. 강해지고 있다는 건 알겠어.",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.4-attack": "None"
+}

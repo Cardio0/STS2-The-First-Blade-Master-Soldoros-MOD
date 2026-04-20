@@ -1,0 +1,94 @@
+{
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-0r.char": "Let our blades speak.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-0r.next": "Blade's Dialogue",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-1r.ancient": "A blade master... how quaint.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-attack": "Both",
+
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-0r.char": "I've returned. Give me everything you've got.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-0r.next": "Blade's Dialogue",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-1r.ancient": "Hmph... I'll humor you once more.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-attack": "Both",
+
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-0r.char": "The strength I've forged here — withstand it.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-0r.next": "Blade's Dialogue",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-1r.ancient": "...You grow stronger each time.",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-attack": "Both",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "...A swordsman has arrived. Let me tend to your wounds.",
+  "NEOW.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "...You climb the tower again. Your training never ends.",
+  "NEOW.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.2-0r.ancient": "...You return once more. Tireless as ever.",
+  "NEOW.talk.SOLDOROS-SOLDOROS.2-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "Oh! All those weapons... a true Weapon Master!",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-0r.next": "...",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-1r.char": "...Let's see what you have.",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "Welcome back! I've got great items for you today.",
+  "DARV.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "You seem stronger every time... makes me a little nervous, honestly.",
+  "DARV.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "Oho... a new face. Looking for something special?",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "You're back. Take whatever catches your eye.",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "Your face is familiar now... I think I know what you want.",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "I wonder what weapons a Weapon Master carries.",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-0r.next": "...",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-1r.char": "If it makes me stronger, I'll consider it.",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "You're back. What sort of trade do you have in mind?",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "Dealings with you are always... interesting.",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "First time here. What are you looking for, swordsman?",
+  "PAEL.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "You're back. Was the last one useful?",
+  "PAEL.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "A regular now, are you.",
+  "PAEL.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "Oh! A new face! What do you need?",
+  "TANX.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "Back again! What are you taking this time?",
+  "TANX.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "I think I know your taste by now. Let's see...",
+  "TANX.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "My, a new guest. Can I offer you something to eat?",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-0r.next": "...",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-1r.char": "...Thank you.",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "You're back. I've already prepared something for you.",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "There you are. You need to eat to fight.",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "...Ah, a swordsman. Speak if you need something.",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "...You're back. What do you want this time.",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "...You keep coming. I can tell you're getting stronger.",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.4-attack": "None"
+}

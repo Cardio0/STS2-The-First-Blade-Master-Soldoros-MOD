@@ -1,0 +1,33 @@
+{
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.title": "Ego Sword - Claris",
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.description": "At the start of each combat, add [gold]Ego Sword - Claris[/gold] to your hand.",
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.flavor": "\"The blade chooses its master.\"",
+
+  "SOLDOROS-WEAPON_SELECTOR.title": "Weapon Selector",
+  "SOLDOROS-WEAPON_SELECTOR.description": "Every 7 combats completed,\ngain 1 random Relic.",
+  "SOLDOROS-WEAPON_SELECTOR.flavor": "\"A legendary armor said to resonate with surrounding weapons.\"",
+
+  "SOLDOROS-DEMON_SLAVE.title": "Demon Slave",
+  "SOLDOROS-DEMON_SLAVE.description": "At the start of each combat,\nlose 2 HP. Gain 2 [gold]Strength[/gold].",
+  "SOLDOROS-DEMON_SLAVE.flavor": "\"My mind... ugh... is going insane.\"",
+
+  "SOLDOROS-GOLDEN_HAMMER.title": "Mighty Dwarf's Golden Hammer",
+  "SOLDOROS-GOLDEN_HAMMER.description": "Upon pickup, upgrade 3 random\ncards that cost 2 or more.",
+  "SOLDOROS-GOLDEN_HAMMER.flavor": "\"Heavy, but the destructive power is incredible!\"",
+
+  "SOLDOROS-HELLO_GUISH.title": "Hello Guish",
+  "SOLDOROS-HELLO_GUISH.description": "Whenever you apply [gold]Weak[/gold],\nalso apply [gold]Vulnerable[/gold].",
+  "SOLDOROS-HELLO_GUISH.flavor": "\"Blessed by Guish, a fairy who commands ice magic.\"",
+
+  "SOLDOROS-SOLDOROS_DECISION.title": "Soldoros's Decision",
+  "SOLDOROS-SOLDOROS_DECISION.description": "At the start of each combat,\ngain 1 [gold]Strength[/gold] for every 5 relics you own.",
+  "SOLDOROS-SOLDOROS_DECISION.flavor": "\"This suits you best. -Soldoros-\"",
+
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.title": "Shapeless Sword Elenore",
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.description": "Attack cards deal double damage\nto enemies with [gold]Block[/gold].",
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.flavor": "\"Having no fixed form, the moment you think you've blocked it, you take the hit.\"",
+
+  "SOLDOROS-HALGIS_BONE_RING.title": "Halgi's Bone Ring",
+  "SOLDOROS-HALGIS_BONE_RING.description": "Attack cards deal 25% more damage\nto enemies that intend to attack.",
+  "SOLDOROS-HALGIS_BONE_RING.flavor": "\"One shot is all you need! Why strike twice or three times? Once is enough. - Cargon\""
+}
