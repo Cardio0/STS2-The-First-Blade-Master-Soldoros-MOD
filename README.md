@@ -45,7 +45,7 @@
 ## 설치 방법
 
 1. `Slay the Spire 2` 로컬 폴더를 열고, `mods/` 폴더가 없으면 생성합니다.
-2. **(필수)** [BaseLib](https://github.com/Alchyr/BaseLib-StS2/releases) 를 다운로드하여 `mods/` 폴더에 압축 해제합니다.
+2. **(최신 버전/필수)** [BaseLib](https://github.com/Alchyr/BaseLib-StS2/releases) 를 다운로드하여 `mods/` 폴더에 압축 해제합니다.
 3. 솔도로스 최신 릴리즈를 다운로드하여 `mods/` 폴더에 압축 해제합니다.
 4. 게임을 실행하고 모드 선택 화면에서 **The First Blade Master Soldoros** 를 활성화합니다.
 5. 즐기세요!
