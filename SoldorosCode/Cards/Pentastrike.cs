@@ -39,7 +39,8 @@ public sealed class Pentastrike : SoldorosCard
         int stacks = cardPlay.Target.GetPower<VulnerablePower>()?.Amount ?? 0;
         if (stacks > 0)
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks);
+        int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)str * stacks;
         await DamageCmd.Attack(finalDamage)
             .WithHitCount(5)
             .FromCard(this)

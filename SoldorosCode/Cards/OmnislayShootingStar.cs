@@ -50,7 +50,8 @@ public sealed class OmnislayShootingStar : SoldorosCard
         if (stacks > 0)
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
 
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks);
+        int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)str * stacks;
 
         var cmd = await DamageCmd.Attack(finalDamage)
             .FromCard(this)

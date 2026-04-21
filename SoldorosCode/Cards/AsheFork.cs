@@ -52,8 +52,10 @@ public sealed class AsheFork : SoldorosCard
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
         }
 
-        // 3. base × (1 + stacks) 피해 적용
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks);
+        // 3. 꿰뚫기 피해 적용 (힘 보정 포함)
+        // 엔진 결과: finalDamage + str = (base+str)×(1+stacks)
+        int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)str * stacks;
         await DamageCmd.Attack(finalDamage)
             .FromCard(this)
             .Targeting(cardPlay.Target)
