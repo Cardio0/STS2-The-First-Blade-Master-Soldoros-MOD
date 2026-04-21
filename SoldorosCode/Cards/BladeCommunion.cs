@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 검의 대화 — 파워. 힘 2(→3) 획득, 모든 적 힘 1 획득.
+// 검의 대화 — 파워. 힘 3(→4) 획득, 모든 적 힘 1 획득.
 public sealed class BladeCommunion : SoldorosCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -21,7 +21,7 @@ public sealed class BladeCommunion : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(2m, ValueProp.Unpowered),
+        new DamageVar(3m, ValueProp.Unpowered),
     };
 
     public BladeCommunion() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
@@ -38,6 +38,6 @@ public sealed class BladeCommunion : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(1m);   // 2 → 3
+        base.DynamicVars.Damage.UpgradeValueBy(1m);   // 3 → 4
     }
 }

@@ -20,7 +20,7 @@ public sealed class FlowingStance : SoldorosCard
         HoverTipFactory.FromCard<FlowingStanceClash>(),
     };
 
-    public FlowingStance() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
+    public FlowingStance() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

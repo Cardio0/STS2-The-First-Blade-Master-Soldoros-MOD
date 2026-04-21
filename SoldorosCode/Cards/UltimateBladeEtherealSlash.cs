@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 극 발검술: 무형참 — 희귀 공격. 피해 10(→13). 방어도 보유 시 3번 적중.
+// 극 발검술: 무형참 — 희귀 공격. 피해 10(→13). 방어도 보유 시 4번 적중.
 public sealed class UltimateBladeEtherealSlash : SoldorosCard
 {
     protected override bool ShouldGlowGoldInternal =>
@@ -33,7 +33,7 @@ public sealed class UltimateBladeEtherealSlash : SoldorosCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
-        int hitCount = cardPlay.Target.Block > 0 ? 3 : 1;
+        int hitCount = cardPlay.Target.Block > 0 ? 4 : 1;
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .WithHitCount(hitCount)

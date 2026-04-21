@@ -10,7 +10,7 @@ namespace Soldoros.SoldorosCode.Cards;
 // 강화: 선천성 추가.
 public sealed class RapidWeaponSwitch : SoldorosCard
 {
-    public RapidWeaponSwitch() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
+    public RapidWeaponSwitch() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

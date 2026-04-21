@@ -12,8 +12,8 @@ using Soldoros.SoldorosCode.Powers;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 극 귀검술: 심검 — 희귀 공격. 3 코스트.
-// 피해 6. 다음 턴 공격 카드 피해 2배. 업그레이드: 비용 3→2.
+// 극 귀검술: 심검 — 희귀 공격. 1 코스트.
+// 피해 6. 다음 턴 공격 카드 피해 2배. 업그레이드: 비용 1→0.
 public sealed class OmnislayMindsSword : SoldorosCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -26,7 +26,7 @@ public sealed class OmnislayMindsSword : SoldorosCard
         new DamageVar(6m, ValueProp.Move),
     };
 
-    public OmnislayMindsSword() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
+    public OmnislayMindsSword() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

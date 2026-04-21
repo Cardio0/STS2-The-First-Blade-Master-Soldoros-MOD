@@ -23,7 +23,7 @@ public sealed class SwordQiMaster : SoldorosCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SwordQiMasterPower>(base.Owner.Creature, 1, base.Owner.Creature, this);
+        await PowerCmd.Apply<SwordQiMasterPower>(base.Owner.Creature, 2, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

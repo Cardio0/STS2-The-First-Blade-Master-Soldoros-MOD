@@ -10,7 +10,7 @@ using Soldoros.SoldorosCode.Powers;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 자아를 가진 검 — 파워. 에고소드 클라리스를 뽑을 때마다 방어도 4(→5) 획득 파워 장착.
+// 자아를 가진 검 — 파워. 에고소드 클라리스를 뽑을 때마다 방어도 6(→9) 획득 파워 장착.
 public sealed class SentientBlade : SoldorosCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -20,7 +20,7 @@ public sealed class SentientBlade : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new BlockVar(4m, ValueProp.Move),
+        new BlockVar(6m, ValueProp.Move),
     };
 
     public SentientBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
@@ -32,6 +32,6 @@ public sealed class SentientBlade : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(1m);   // 4 → 5
+        base.DynamicVars.Block.UpgradeValueBy(3m);   // 6 → 9
     }
 }
