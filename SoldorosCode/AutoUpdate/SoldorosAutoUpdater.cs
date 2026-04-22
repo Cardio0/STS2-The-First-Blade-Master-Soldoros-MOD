@@ -123,6 +123,10 @@ public static class SoldorosAutoUpdater
 
         string updateDir = GetUpdateDir();
         Directory.CreateDirectory(updateDir);
+
+        // 이전 버전 zip/스크립트 제거 → 게임 종료 시 구버전 스크립트가 새 파일을 덮어쓰는 Race Condition 방지
+        PurgeOldUpdateFiles(updateDir, keepVersion: version);
+
         string zipPath = Path.Combine(updateDir, $"soldoros-v{version}.zip");
 
         if (!File.Exists(zipPath))
@@ -187,6 +191,24 @@ Remove-Item -LiteralPath $extractDir -Recurse -Force -ErrorAction SilentlyContin
     }
 
     private static string EscapePs(string value) => value.Replace("'", "''");
+
+    // 새 버전 준비 전에 이전 버전의 zip/ps1 파일 삭제
+    // keepVersion에 해당하는 파일은 유지 (prepared_version.txt도 유지)
+    private static void PurgeOldUpdateFiles(string updateDir, string keepVersion)
+    {
+        try
+        {
+            foreach (string file in Directory.GetFiles(updateDir))
+            {
+                string name = Path.GetFileName(file);
+                if (name == PendingVersionFileName) continue;
+                if (name == $"soldoros-v{keepVersion}.zip") continue;
+                if (name == $"apply_update_v{keepVersion}.ps1") continue;
+                File.Delete(file);
+            }
+        }
+        catch { }
+    }
 
     private static bool IsPreparedAlreadyQueued(string version)
     {
