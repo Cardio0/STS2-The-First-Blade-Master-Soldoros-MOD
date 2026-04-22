@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 극 발검술: 섬단 — 희귀 공격. 2 코스트.
+// 극 발검술: 섬단 — 희귀 공격. 1 코스트.
 // 피해 10 고정 타격 후, 이번 전투에서 사용한 무색 카드 수만큼 추가 피해. 업그레이드: 잔류.
 public sealed class UltimateBladeLightning : SoldorosCard
 {
@@ -30,7 +30,7 @@ public sealed class UltimateBladeLightning : SoldorosCard
         // CalculatedDamage = 0 + 1 × N = N (무색 카드 수)
     };
 
-    public UltimateBladeLightning() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
+    public UltimateBladeLightning() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

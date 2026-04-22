@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 극 귀검술:유성락 — 공격. 꿰뚫기. 피해 10(→12). 막히지 않은 피해량만큼 방어도 획득. 소멸(강화 시 소멸 제거).
+// 극 귀검술:유성락 — 공격. 꿰뚫기. 피해 10(→10). 막히지 않은 피해량만큼 방어도 획득. 소멸(강화 시 소멸 제거).
 public sealed class OmnislayShootingStar : SoldorosCard
 {
     // 취약 상태인 적이 있으면 금색 테두리 강조
@@ -66,7 +66,6 @@ public sealed class OmnislayShootingStar : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);   // 10 → 12
-        RemoveKeyword(CardKeyword.Exhaust);
+        RemoveKeyword(CardKeyword.Exhaust);   // 피해량 유지 (10), 소멸만 제거
     }
 }

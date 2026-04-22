@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 환영검무 — 고급 공격. X 코스트. 꿰뚫기. 피해 6(→7)만큼 X번.
+// 환영검무 — 고급 공격. X 코스트. 꿰뚫기. 피해 5(→6)만큼 X번.
 public sealed class IllusionSwordDance : SoldorosCard
 {
     // 취약 상태인 적이 있으면 금색 테두리 강조
@@ -31,7 +31,7 @@ public sealed class IllusionSwordDance : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new PierceDamageVar(6m),
+        new PierceDamageVar(5m),
     };
 
     public IllusionSwordDance() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
@@ -61,6 +61,6 @@ public sealed class IllusionSwordDance : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(1m);   // 6 → 7
+        base.DynamicVars.Damage.UpgradeValueBy(1m);   // 5 → 6
     }
 }

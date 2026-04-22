@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 류심 퀘 — 류심 토큰 (공격).
+// 류심 쾌 — 류심 토큰 (공격).
 // FlowingStance 카드가 손에 생성. 휘발성(Ethereal) + 소멸(Exhaust).
 public sealed class FlowingStanceSwift : SoldorosTokenCard, IFlowingStanceCard
 {

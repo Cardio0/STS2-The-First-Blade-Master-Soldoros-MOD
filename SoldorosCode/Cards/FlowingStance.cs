@@ -7,12 +7,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 류심 — 류심 승/퀘/충 세 장을 손에 생성.
+// 류심 — 류심 승/쾌/충 세 장을 손에 생성.
 // 기본: 비용 2. 소멸 없음.
-// 강화(류심+): 류심 승+/퀘+/충+ 생성. 설명 및 호버팁도 + 버전으로 표시.
+// 강화(류심+): 류심 승+/쾌+/충+ 생성. 설명 및 호버팁도 + 버전으로 표시.
 public sealed class FlowingStance : SoldorosCard
 {
-    // 마우스 호버 시 류심 승/퀘/충(+) 카드 썸네일 표시
+    // 마우스 호버 시 류심 승/쾌/충(+) 카드 썸네일 표시
     // IsUpgraded 시 upgrade: true 를 전달하여 + 버전 호버팁을 보여줌
     protected override IEnumerable<IHoverTip> ExtraHoverTips => IsUpgraded
         ? new IHoverTip[]

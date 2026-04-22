@@ -10,7 +10,7 @@ using Soldoros.SoldorosCode.Powers;
 namespace Soldoros.SoldorosCode.Cards;
 
 // 검기상인 — 파워. 에고소드 클라리스가 막히지 않은 피해를 줄 때마다 약화 1 부여.
-// 강화: 비용 2 → 1.
+// 강화: 비용 1 → 0.
 public sealed class SwordQiMaster : SoldorosCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -19,7 +19,7 @@ public sealed class SwordQiMaster : SoldorosCard
         HoverTipFactory.FromPower<WeakPower>(),
     };
 
-    public SwordQiMaster() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
+    public SwordQiMaster() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -28,6 +28,6 @@ public sealed class SwordQiMaster : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);   // 2 → 1
+        base.EnergyCost.UpgradeBy(-1);   // 1 → 0
     }
 }

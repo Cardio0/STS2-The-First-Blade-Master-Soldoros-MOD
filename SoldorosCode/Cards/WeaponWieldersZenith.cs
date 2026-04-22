@@ -9,7 +9,7 @@ using Soldoros.SoldorosCode.Powers;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 무기의 극의 — 고급 스킬. 0 코스트.
+// 무기의 극의 — 고급 스킬. 1 코스트.
 // 이번 턴에 무색 카드를 사용할 때마다, 이번 턴 동안 힘을 2 얻습니다.
 public sealed class WeaponWieldersZenith : SoldorosCard
 {
@@ -18,7 +18,7 @@ public sealed class WeaponWieldersZenith : SoldorosCard
         HoverTipFactory.FromPower<StrengthPower>(),
     };
 
-    public WeaponWieldersZenith() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public WeaponWieldersZenith() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

@@ -90,18 +90,6 @@ public sealed class EgoswordClararis : CustomCardModel
         }
     }
 
-    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
-    {
-        if (card != this)
-            return;
-
-        if (base.CombatState is null) return;
-        // 뽑기 피해: 스피드스터와 동일한 Unpowered 크리처 딜
-        // → 약화·취약 배율 무시, 가시 반사 없음
-        await CreatureCmd.Damage(choiceContext, base.CombatState.HittableEnemies,
-            base.DynamicVars["DrawDamage"].BaseValue, ValueProp.Unpowered, base.Owner.Creature, this);
-    }
-
     // 유일 키워드: 플레이 후 소멸이 아닌 버리기 더미로
     protected override PileType GetResultPileType() => PileType.Discard;
 
@@ -132,15 +120,27 @@ public sealed class EgoswordClararis : CustomCardModel
 
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
-        if (card != this || !_isClone)
-            return;
+        if (card != this) return;
 
+        // 복사본 제거 로직 (유일 키워드)
         // card.Pile != null && IsCombatPile → 실제 더미에 있을 때만 제거
         // (RemoveFromCombat이 내부적으로 AfterCardChangedPiles를 재호출하므로
         //  두 번째 호출 시에는 card.Pile == null → 조건 불충족 → 재진입 방지)
-        if (card.Pile != null && card.Pile.IsCombatPile)
+        if (_isClone)
         {
-            await CardPileCmd.RemoveFromCombat(card);
+            if (card.Pile != null && card.Pile.IsCombatPile)
+                await CardPileCmd.RemoveFromCombat(card);
+            return;
+        }
+
+        // 뽑을 카드 더미 → 손 이동 시 피해 발동
+        // AfterCardDrawn(일반 뽑기)뿐 아니라 손으로 가져오기 효과도 모두 감지
+        if (oldPileType == PileType.Draw && card.Pile?.Type == PileType.Hand)
+        {
+            if (base.CombatState is null) return;
+            // Unpowered 크리처 딜 → 약화·취약 배율 무시, 가시 반사 없음
+            await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), base.CombatState.HittableEnemies,
+                base.DynamicVars["DrawDamage"].BaseValue, ValueProp.Unpowered, base.Owner.Creature, this);
         }
     }
 

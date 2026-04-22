@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 절제된 공격 — 피해 후 무작위 류심 토큰(승/퀘/충)을 손에 생성.
+// 절제된 공격 — 피해 후 무작위 류심 토큰(승/쾌/충)을 손에 생성.
 public sealed class MeasuredStrike : SoldorosCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -42,7 +42,7 @@ public sealed class MeasuredStrike : SoldorosCard
             new[] { token }, PileType.Hand, addedByPlayer: true);
     }
 
-    // Rng.Shuffle 을 사용해 0~2 무작위 선택 → 류심 승/퀘/충 중 하나 생성
+    // Rng.Shuffle 을 사용해 0~2 무작위 선택 → 류심 승/쾌/충 중 하나 생성
     private CardModel CreateRandomFlowingStanceToken()
     {
         int roll = base.Owner.RunState.Rng.Shuffle.NextInt(3);
