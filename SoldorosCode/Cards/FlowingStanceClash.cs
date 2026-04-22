@@ -54,11 +54,12 @@ public sealed class FlowingStanceClash : SoldorosTokenCard, IFlowingStanceCard
         if (stacks > 0)
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
 
-        // 힘(str)은 엔진이 finalDamage에 덧셈으로 추가하므로,
-        // 꿰뚫기 배율 안에 str이 포함되도록 보정항(str×stacks)을 추가.
-        // 엔진 결과: finalDamage + str = (base+str)×(1+stacks)
+        // 힘·활력은 엔진이 finalDamage에 덧셈으로 추가하므로,
+        // 꿰뚫기 배율 안에 포함되도록 보정항((str+vigor)×stacks)을 추가.
+        // 엔진 결과: finalDamage + str + vigor = (base+str+vigor)×(1+stacks)
         int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)str * stacks;
+        int vigor = base.Owner.Creature.GetPower<VigorPower>()?.Amount ?? 0;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks;
         await DamageCmd.Attack(finalDamage)
             .FromCard(this)
             .Targeting(cardPlay.Target)
@@ -68,5 +69,6 @@ public sealed class FlowingStanceClash : SoldorosTokenCard, IFlowingStanceCard
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Ethereal);
+        base.DynamicVars.Damage.UpgradeValueBy(1m);   // 3 → 4
     }
 }

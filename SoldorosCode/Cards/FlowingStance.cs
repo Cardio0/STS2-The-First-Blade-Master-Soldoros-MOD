@@ -7,20 +7,28 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 류심 — 류심 승/퀘/충 세 장을 손에 생성하고 소멸.
+// 류심 — 류심 승/퀘/충 세 장을 손에 생성.
+// 기본: 비용 2. 소멸 없음.
+// 강화(류심+): 류심 승+/퀘+/충+ 생성. 설명 및 호버팁도 + 버전으로 표시.
 public sealed class FlowingStance : SoldorosCard
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    // 마우스 호버 시 류심 승/퀘/충(+) 카드 썸네일 표시
+    // IsUpgraded 시 upgrade: true 를 전달하여 + 버전 호버팁을 보여줌
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => IsUpgraded
+        ? new IHoverTip[]
+          {
+              HoverTipFactory.FromCard<FlowingStanceRise>(upgrade: true),
+              HoverTipFactory.FromCard<FlowingStanceSwift>(upgrade: true),
+              HoverTipFactory.FromCard<FlowingStanceClash>(upgrade: true),
+          }
+        : new IHoverTip[]
+          {
+              HoverTipFactory.FromCard<FlowingStanceRise>(),
+              HoverTipFactory.FromCard<FlowingStanceSwift>(),
+              HoverTipFactory.FromCard<FlowingStanceClash>(),
+          };
 
-    // 마우스 호버 시 류심 승/퀘/충 카드 썸네일 표시 (선제 타격의 단도 패턴)
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
-        HoverTipFactory.FromCard<FlowingStanceRise>(),
-        HoverTipFactory.FromCard<FlowingStanceSwift>(),
-        HoverTipFactory.FromCard<FlowingStanceClash>(),
-    };
-
-    public FlowingStance() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
+    public FlowingStance() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -33,11 +41,10 @@ public sealed class FlowingStance : SoldorosCard
             base.CombatState.CreateCard<FlowingStanceClash>(base.Owner),
         };
 
-        await CardPileCmd.AddGeneratedCardsToCombat(tokens, PileType.Hand, addedByPlayer: true);
-    }
+        // 류심+: 생성 토큰도 강화(+) 버전으로
+        if (IsUpgraded)
+            foreach (var t in tokens) t.UpgradeInternal();
 
-    protected override void OnUpgrade()
-    {
-        RemoveKeyword(CardKeyword.Exhaust);
+        await CardPileCmd.AddGeneratedCardsToCombat(tokens, PileType.Hand, addedByPlayer: true);
     }
 }

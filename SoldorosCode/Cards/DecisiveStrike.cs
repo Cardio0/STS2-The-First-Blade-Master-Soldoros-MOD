@@ -27,7 +27,7 @@ public sealed class DecisiveStrike : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new PierceDamageVar(16m),
+        new PierceDamageVar(12m),
     };
 
     public DecisiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
@@ -39,7 +39,8 @@ public sealed class DecisiveStrike : SoldorosCard
         if (stacks > 0)
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
         int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)str * stacks;
+        int vigor = base.Owner.Creature.GetPower<VigorPower>()?.Amount ?? 0;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks;
         await DamageCmd.Attack(finalDamage)
             .FromCard(this)
             .Targeting(cardPlay.Target)
@@ -48,6 +49,6 @@ public sealed class DecisiveStrike : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(4m);   // 16 → 20
+        base.DynamicVars.Damage.UpgradeValueBy(3m);   // 12 → 15
     }
 }

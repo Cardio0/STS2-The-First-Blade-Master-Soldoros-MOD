@@ -1,7 +1,7 @@
 {
   "SOLDOROS-RAPID_WEAPON_SWITCH_POWER.title": "Rapid Weapon Switch",
-  "SOLDOROS-RAPID_WEAPON_SWITCH_POWER.description": "At the start of your turn, draw {Amount} card(s)\nand place {Amount} card(s) from your [gold]hand[/gold]\non top of your draw pile.",
-  "SOLDOROS-RAPID_WEAPON_SWITCH_POWER.smartDescription": "At the start of your turn, draw {Amount} card(s)\nand place {Amount} card(s) from your [gold]hand[/gold]\non top of your draw pile.",
+  "SOLDOROS-RAPID_WEAPON_SWITCH_POWER.description": "At the start of your turn, draw {Amount} card(s)\nand place {Amount} card(s) from your [gold]hand[/gold]\non top of your [gold]draw pile[/gold].",
+  "SOLDOROS-RAPID_WEAPON_SWITCH_POWER.smartDescription": "At the start of your turn, draw {Amount} card(s)\nand place {Amount} card(s) from your [gold]hand[/gold]\non top of your [gold]draw pile[/gold].",
   "SOLDOROS-SENTIENT_BLADE_POWER.title": "Sentient Blade",
   "SOLDOROS-SENTIENT_BLADE_POWER.description": "Whenever you draw [gold]Egosword Clararis[/gold],\ngain {Amount} [gold]Block[/gold].",
   "SOLDOROS-SENTIENT_BLADE_POWER.smartDescription": "Whenever you draw [gold]Egosword Clararis[/gold],\ngain {Amount} [gold]Block[/gold].",

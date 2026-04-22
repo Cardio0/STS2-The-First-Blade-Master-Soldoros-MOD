@@ -48,5 +48,6 @@ public sealed class FlowingStanceRise : SoldorosTokenCard, IFlowingStanceCard
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Ethereal);
+        base.DynamicVars.Damage.UpgradeValueBy(1m);   // 3 → 4
     }
 }
