@@ -15,7 +15,6 @@ public sealed class FlowingStanceForcePower : SoldorosPower
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? card)
     {
         if (base.Owner != dealer) return 0m;
-        if (!props.IsPoweredAttack()) return 0m;
         if (card == null) return 0m;
         if (card.Type != CardType.Attack) return 0m;
         if (!card.VisualCardPool.IsColorless) return 0m;
