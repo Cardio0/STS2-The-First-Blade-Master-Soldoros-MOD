@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Soldoros.SoldorosCode.Powers;
 
 namespace Soldoros.SoldorosCode.Cards;
 
@@ -59,7 +60,8 @@ public sealed class FlowingStanceClash : SoldorosTokenCard, IFlowingStanceCard
         // 엔진 결과: finalDamage + str + vigor = (base+str+vigor)×(1+stacks)
         int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
         int vigor = base.Owner.Creature.GetPower<VigorPower>()?.Amount ?? 0;
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks;
+        int flowingForce = base.Owner.Creature.GetPower<FlowingStanceForcePower>()?.Amount ?? 0;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks + (decimal)flowingForce * stacks;
         await DamageCmd.Attack(finalDamage)
             .FromCard(this)
             .Targeting(cardPlay.Target)

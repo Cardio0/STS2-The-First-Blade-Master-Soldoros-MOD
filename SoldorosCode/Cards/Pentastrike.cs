@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
@@ -41,7 +42,8 @@ public sealed class Pentastrike : SoldorosCard
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
         int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
         int vigor = base.Owner.Creature.GetPower<VigorPower>()?.Amount ?? 0;
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks;
+        decimal enchantBonus = this.Enchantment?.EnchantDamageAdditive(base.DynamicVars.Damage.BaseValue, ValueProp.Move) ?? 0m;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks + enchantBonus * stacks;
         await DamageCmd.Attack(finalDamage)
             .WithHitCount(5)
             .FromCard(this)

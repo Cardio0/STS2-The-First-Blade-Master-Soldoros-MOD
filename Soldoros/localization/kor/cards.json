@@ -33,7 +33,7 @@
   "SOLDOROS-ARMAMENT.title": "무장",
   "SOLDOROS-ARMAMENT.description": "보유한 유물 수만큼\n[gold]방어도[/gold]를 얻습니다.{InCombat:\n([gold]방어도[/gold]를 {CalculatedBlock:diff()} 얻습니다)|}",
   "SOLDOROS-LIGHTNING_DRAW_SWORD.title": "극초발도",
-  "SOLDOROS-LIGHTNING_DRAW_SWORD.description": "모든 적에게 피해를 {Damage:diff()} 줍니다.\n보유한 유물 수만큼 피해량이 증가합니다.",
+  "SOLDOROS-LIGHTNING_DRAW_SWORD.description": "모든 적에게 피해를 {CalculatedDamage:diff()} 줍니다.\n보유한 유물 수만큼 피해량이 증가합니다.",
   "SOLDOROS-FLOWING_STANCE.title": "류심",
   "SOLDOROS-FLOWING_STANCE.description": "[gold]{IfUpgraded:show:류심 승, 쾌, 충+|류심 승, 쾌, 충}[/gold]을 [gold]손[/gold]으로 가져옵니다.",
   "SOLDOROS-FLOWING_STANCE_RISE.title": "류심 승",

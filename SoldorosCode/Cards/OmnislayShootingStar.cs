@@ -52,7 +52,8 @@ public sealed class OmnislayShootingStar : SoldorosCard
 
         int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
         int vigor = base.Owner.Creature.GetPower<VigorPower>()?.Amount ?? 0;
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks;
+        decimal enchantBonus = this.Enchantment?.EnchantDamageAdditive(base.DynamicVars.Damage.BaseValue, ValueProp.Move) ?? 0m;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks + enchantBonus * stacks;
 
         var cmd = await DamageCmd.Attack(finalDamage)
             .FromCard(this)

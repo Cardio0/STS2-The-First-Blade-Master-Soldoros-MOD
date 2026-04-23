@@ -33,7 +33,7 @@
   "SOLDOROS-ARMAMENT.title": "Armament",
   "SOLDOROS-ARMAMENT.description": "Gain [gold]Block[/gold] equal\nto the number of relics you own.{InCombat:\n(Gain {CalculatedBlock:diff()} [gold]Block[/gold])|}",
   "SOLDOROS-LIGHTNING_DRAW_SWORD.title": "Lightning Draw Sword",
-  "SOLDOROS-LIGHTNING_DRAW_SWORD.description": "Deal {Damage:diff()} damage to ALL enemies.\nIncrease damage by your relic count.",
+  "SOLDOROS-LIGHTNING_DRAW_SWORD.description": "Deal {CalculatedDamage:diff()} damage to ALL enemies.\nIncrease damage by your relic count.",
   "SOLDOROS-FLOWING_STANCE.title": "Flowing Stance",
   "SOLDOROS-FLOWING_STANCE.description": "Add [gold]{IfUpgraded:show:Flowing Stance Rise, Swift, and Clash+|Flowing Stance Rise, Swift, and Clash}[/gold] to your hand.",
   "SOLDOROS-FLOWING_STANCE_RISE.title": "Flowing Stance - Rise",
