@@ -15,19 +15,19 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Soldoros.SoldorosCode.Cards;
 
 // 극 발검술: 섬단 — 희귀 공격. 1 코스트.
-// 피해 10 고정 타격 후, 이번 전투에서 사용한 무색 카드 수만큼 추가 피해. 업그레이드: 잔류.
+// 피해 10 + 이번 전투에서 사용한 무색 카드 수 × 1. 단일 타격. 업그레이드: 잔류.
+// 덱 UI / 카드 보상: 기본값 10 표시. 전투 중: 현재 계산값 표시.
 public sealed class UltimateBladeLightning : SoldorosCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(10m, ValueProp.Move),     // 기본 타격 10 (표기용)
-        new CalculationBaseVar(0m),             // CalculatedDamage 기저값 0
-        new ExtraDamageVar(1m),                 // 무색 카드 1장당 +1 피해
+        new CalculationBaseVar(10m),
+        new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
             static (CardModel card, Creature? _) =>
-                CombatManager.Instance.History.CardPlaysFinished.Count(
-                    (CardPlayFinishedEntry e) => e.CardPlay.Card.Owner == card.Owner && e.CardPlay.Card.VisualCardPool.IsColorless)),
-        // CalculatedDamage = 0 + 1 × N = N (무색 카드 수)
+                card.Owner.PlayerCombatState?.AllCards.Contains(card) == true ?
+                CombatManager.Instance?.History?.CardPlaysFinished?.Count(
+                    (CardPlayFinishedEntry e) => e.CardPlay.Card.Owner == card.Owner && e.CardPlay.Card.VisualCardPool.IsColorless) ?? 0 : 0),
     };
 
     public UltimateBladeLightning() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
@@ -36,20 +36,10 @@ public sealed class UltimateBladeLightning : SoldorosCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
-        // 1타: 기본 10 피해
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
+        await DamageCmd.Attack(base.DynamicVars.CalculatedDamage)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
-
-        // 2타: 무색 카드 수만큼 추가 피해
-        decimal extraDamage = (decimal)CombatManager.Instance.History.CardPlaysFinished.Count(
-            (CardPlayFinishedEntry e) => e.CardPlay.Card.Owner == base.Owner && e.CardPlay.Card.VisualCardPool.IsColorless);
-        if (extraDamage > 0)
-            await DamageCmd.Attack(extraDamage)
-                .FromCard(this)
-                .Targeting(cardPlay.Target)
-                .Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

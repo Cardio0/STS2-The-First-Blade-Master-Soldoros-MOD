@@ -33,7 +33,10 @@ public sealed class TelekineticSwordsPower : SoldorosPower
             player.RunState.Rng.CombatCardGeneration);
 
         foreach (var card in cards)
+        {
+            card.SetToFreeThisTurn();
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+        }
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

@@ -43,6 +43,6 @@ public sealed class UpwardSlash : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(4m);   // 2 → 6
+        base.EnergyCost.UpgradeBy(-1);   // 1 → 0
     }
 }

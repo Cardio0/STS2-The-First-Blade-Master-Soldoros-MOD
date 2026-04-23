@@ -30,6 +30,6 @@
   "SOLDOROS-OMNISLAY_MINDS_SWORD_POWER.description": "For the next {Amount} turn(s),\nAttack cards deal double damage.",
   "SOLDOROS-OMNISLAY_MINDS_SWORD_POWER.smartDescription": "For the next {Amount} turn(s),\nAttack cards deal double damage.",
   "SOLDOROS-TELEKINETIC_SWORDS_POWER.title": "Telekinetic Swords",
-  "SOLDOROS-TELEKINETIC_SWORDS_POWER.description": "Whenever you play an Attack card,\nadd {Amount} random Colorless card(s) to your [gold]hand[/gold].",
-  "SOLDOROS-TELEKINETIC_SWORDS_POWER.smartDescription": "Whenever you play an Attack card,\nadd {Amount} random Colorless card(s) to your [gold]hand[/gold]."
+  "SOLDOROS-TELEKINETIC_SWORDS_POWER.description": "Whenever you play an Attack card,\nadd {Amount} random Colorless card(s) to your [gold]hand[/gold].\nIt can be played for free this turn.",
+  "SOLDOROS-TELEKINETIC_SWORDS_POWER.smartDescription": "Whenever you play an Attack card,\nadd {Amount} random Colorless card(s) to your [gold]hand[/gold].\nIt can be played for free this turn."
 }

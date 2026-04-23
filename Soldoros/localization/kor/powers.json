@@ -30,6 +30,6 @@
   "SOLDOROS-OMNISLAY_MINDS_SWORD_POWER.description": "다음 턴부터 {Amount}턴 동안,\n공격 카드의 피해량이 2배가 됩니다.",
   "SOLDOROS-OMNISLAY_MINDS_SWORD_POWER.smartDescription": "다음 턴부터 {Amount}턴 동안,\n공격 카드의 피해량이 2배가 됩니다.",
   "SOLDOROS-TELEKINETIC_SWORDS_POWER.title": "이기어검술",
-  "SOLDOROS-TELEKINETIC_SWORDS_POWER.description": "공격 카드를 사용할 때마다,\n무작위 무색 카드를 {Amount}장 [gold]손[/gold]으로 가져옵니다.",
-  "SOLDOROS-TELEKINETIC_SWORDS_POWER.smartDescription": "공격 카드를 사용할 때마다,\n무작위 무색 카드를 {Amount}장 [gold]손[/gold]으로 가져옵니다."
+  "SOLDOROS-TELEKINETIC_SWORDS_POWER.description": "공격 카드를 사용할 때마다,\n무작위 무색 카드를 {Amount}장 [gold]손[/gold]으로 가져옵니다.\n이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
+  "SOLDOROS-TELEKINETIC_SWORDS_POWER.smartDescription": "공격 카드를 사용할 때마다,\n무작위 무색 카드를 {Amount}장 [gold]손[/gold]으로 가져옵니다.\n이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다."
 }

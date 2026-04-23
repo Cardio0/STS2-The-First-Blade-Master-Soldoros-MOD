@@ -34,7 +34,10 @@ public class RelicBonusDamageVar : DamageVar
     {
         base.UpdateCardPreview(card, previewMode, target, runGlobalHooks);
 
-        int relicCount = card.Owner?.Relics.Count ?? 0;
+        // 덱 UI / 카드 보상 화면에서는 유물 보너스 없이 기본값만 표시
+        if (card.Owner?.PlayerCombatState?.AllCards.Contains(card) != true) return;
+
+        int relicCount = card.Owner.Relics.Count;
         if (relicCount <= 0) return;
 
         // base 가 적용한 배율 역산 (취약, 약화 등 포함)
