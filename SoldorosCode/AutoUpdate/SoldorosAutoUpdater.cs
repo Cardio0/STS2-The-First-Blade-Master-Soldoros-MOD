@@ -176,10 +176,8 @@ if (Test-Path -LiteralPath $extractDir) {{
 }}
 
 [System.IO.Compression.ZipFile]::ExtractToDirectory($zipPath, $extractDir)
-$payloadDir = Join-Path $extractDir 'soldoros'
-if (-not (Test-Path -LiteralPath $payloadDir)) {{
-    $payloadDir = $extractDir
-}}
+$dllFile = Get-ChildItem -LiteralPath $extractDir -Recurse -Filter 'Soldoros.dll' | Select-Object -First 1
+$payloadDir = if ($dllFile) {{ $dllFile.DirectoryName }} else {{ $extractDir }}
 
 New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
 Get-ChildItem -LiteralPath $payloadDir -Force | ForEach-Object {{
