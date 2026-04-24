@@ -12,8 +12,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 차지 버스트 — 고급 공격. 피해 5만큼 2번. 적 취약 2배. 소멸.
-// 강화: 피해 5 → 7.
+// 차지 버스트 — 고급 공격. 피해 3만큼 2번. 적 취약 2배. 소멸.
+// 강화: 피해 3 → 5.
 public sealed class ChargeBurst : SoldorosCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
@@ -31,7 +31,7 @@ public sealed class ChargeBurst : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(3m, ValueProp.Move),
     };
 
     public ChargeBurst() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
@@ -56,6 +56,6 @@ public sealed class ChargeBurst : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);   // 5 → 7
+        base.DynamicVars.Damage.UpgradeValueBy(2m);   // 3 → 5
     }
 }

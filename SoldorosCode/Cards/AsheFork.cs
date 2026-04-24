@@ -53,12 +53,17 @@ public sealed class AsheFork : SoldorosCard
             await PowerCmd.Remove<VulnerablePower>(cardPlay.Target);
         }
 
-        // 3. 꿰뚫기 피해 적용 (힘·활력 보정 포함)
-        // 엔진 결과: finalDamage + str + vigor = (base+str+vigor)×(1+stacks)
+        // 3. 꿰뚫기 피해 적용 (힘·활력·인챈트 보정 포함)
+        // 엔진 파이프라인: rawDamage → ①+ench → ②×corr → ③+str+vigor → ④×vuln(취약 제거됨)
+        // 목표: ((base + ench) × corr + str + vigor) × (1 + stacks)
+        // rawDamage 역산: base×(1+stacks) + ench×stacks + (str+vigor)×stacks/corr
         int str = base.Owner.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
         int vigor = base.Owner.Creature.GetPower<VigorPower>()?.Amount ?? 0;
-        decimal enchantBonus = this.Enchantment?.EnchantDamageAdditive(base.DynamicVars.Damage.BaseValue, ValueProp.Move) ?? 0m;
-        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks) + (decimal)(str + vigor) * stacks + enchantBonus * stacks;
+        decimal ench = this.Enchantment?.EnchantDamageAdditive(base.DynamicVars.Damage.BaseValue, ValueProp.Move) ?? 0m;
+        decimal corr = this.Enchantment?.EnchantDamageMultiplicative(base.DynamicVars.Damage.BaseValue, ValueProp.Move) ?? 1m;
+        decimal finalDamage = base.DynamicVars.Damage.BaseValue * (1 + stacks)
+                            + ench * stacks
+                            + (decimal)(str + vigor) * stacks / corr;
         await DamageCmd.Attack(finalDamage)
             .FromCard(this)
             .Targeting(cardPlay.Target)

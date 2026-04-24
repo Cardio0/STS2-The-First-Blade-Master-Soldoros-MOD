@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 쓰러스트 — 일반 공격. 피해 8(→10). 적 방어도 보유 시 2번 적중.
+// 쓰러스트 — 일반 공격. 피해 9(→11). 적 방어도 보유 시 3번 적중.
 public sealed class Thrust : SoldorosCard
 {
     protected override bool ShouldGlowGoldInternal =>
@@ -32,7 +32,7 @@ public sealed class Thrust : SoldorosCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
-        int hitCount = cardPlay.Target.Block > 0 ? 2 : 1;
+        int hitCount = cardPlay.Target.Block > 0 ? 3 : 1;
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .WithHitCount(hitCount)
