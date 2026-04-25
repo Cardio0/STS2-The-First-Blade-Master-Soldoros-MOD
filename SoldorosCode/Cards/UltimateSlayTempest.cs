@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 극 귀검술: 폭풍식 — 희귀 공격. 2 코스트.
+// 극 귀검술: 폭풍식 — 희귀 공격. 3 코스트.
 // 피해 5(→7). 이번 전투에서 사용한 무색 카드 수만큼 반복. 인게임에 총 횟수 표시.
 public sealed class UltimateSlayTempest : SoldorosCard
 {
@@ -29,7 +29,7 @@ public sealed class UltimateSlayTempest : SoldorosCard
                     (CardPlayFinishedEntry e) => e.CardPlay.Card.Owner == card.Owner && e.CardPlay.Card.VisualCardPool.IsColorless)),
     };
 
-    public UltimateSlayTempest() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
+    public UltimateSlayTempest() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

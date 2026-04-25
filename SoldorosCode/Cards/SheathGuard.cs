@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+
+
 namespace Soldoros.SoldorosCode.Cards;
 
 public sealed class SheathGuard : SoldorosCard
@@ -31,14 +33,8 @@ public sealed class SheathGuard : SoldorosCard
             filter: null,
             source: this)).FirstOrDefault();
 
-        // 선택한 카드를 뽑을 카드 더미에 추가한 뒤 뽑을 카드 더미만 셔플.
-        // CardPileCmd.Shuffle 은 버린 카드 더미까지 섞으므로 사용하지 않음.
         if (selected != null)
-        {
-            await CardPileCmd.Add(selected, PileType.Draw);
-            PileType.Draw.GetPile(base.Owner).RandomizeOrderInternal(
-                base.Owner, base.Owner.RunState.Rng.Shuffle, base.CombatState!);
-        }
+            await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
     }
 
     protected override void OnUpgrade()

@@ -10,10 +10,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Relics;
 
-// 데몬 슬레이브 — 일반. 매 전투 시작 시 체력을 2 잃습니다, 힘을 2 얻습니다.
+// 데몬 슬레이브 — 희귀. 매 전투 시작 시 체력을 1 잃습니다, 힘을 3 얻습니다.
 public sealed class DemonSlave : SoldorosRelic
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
+    public override RelicRarity Rarity => RelicRarity.Rare;
 
     public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
     {
@@ -21,8 +21,8 @@ public sealed class DemonSlave : SoldorosRelic
         if (combatState.RoundNumber != 1) return;
 
         Flash();
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, 2m,
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, 1m,
             ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, 2m, null, null);
+        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, 3m, null, null);
     }
 }

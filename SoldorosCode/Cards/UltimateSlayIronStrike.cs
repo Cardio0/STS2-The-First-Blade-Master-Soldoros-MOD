@@ -9,10 +9,12 @@ using Soldoros.SoldorosCode.Powers;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 극 귀검술:참철식 — 스킬. 이번 턴 동안 막히지 않은 공격 피해를 줄 때마다 취약 1 부여.
+// 극 귀검술:참철식 — 스킬. 소멸. 이번 턴 동안 막히지 않은 공격 피해를 줄 때마다 취약 1 부여.
 // 강화: 비용 1 → 0.
 public sealed class UltimateSlayIronStrike : SoldorosCard
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
         HoverTipFactory.FromPower<VulnerablePower>(),

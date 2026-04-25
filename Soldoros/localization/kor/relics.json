@@ -8,7 +8,7 @@
   "SOLDOROS-WEAPON_SELECTOR.flavor": "\"주변의 무기와 공명하여 엄청난 힘을 낸다는 전설의 방어구\"",
 
   "SOLDOROS-DEMON_SLAVE.title": "데몬 슬레이브",
-  "SOLDOROS-DEMON_SLAVE.description": "매 전투 시작 시 체력을 2 잃습니다.\n[gold]힘[/gold]을 2 얻습니다.",
+  "SOLDOROS-DEMON_SLAVE.description": "매 전투 시작 시 체력을 1 잃습니다.\n[gold]힘[/gold]을 3 얻습니다.",
   "SOLDOROS-DEMON_SLAVE.flavor": "\"정신이… 윽… 미쳐버릴꺼 같아.\"",
 
   "SOLDOROS-GOLDEN_HAMMER.title": "힘센 난장이의 황금 망치",
@@ -28,6 +28,6 @@
   "SOLDOROS-SHAPELESS_SWORD_ELENORE.flavor": "\"정해진 형태가 없기 때문에 막았다고 생각한 순간 피해를 입고 만다.\"",
 
   "SOLDOROS-HALGIS_BONE_RING.title": "할기의 본링",
-  "SOLDOROS-HALGIS_BONE_RING.description": "공격할 의도가 있는 적 상대로 사용하는\n공격 카드의 피해량이 25% 증가합니다.",
+  "SOLDOROS-HALGIS_BONE_RING.description": "공격할 의도가 있는 적 상대로 사용하는\n공격 카드의 피해량이 50% 증가합니다.",
   "SOLDOROS-HALGIS_BONE_RING.flavor": "\"인생 한 방! 뭐 있겠나! 어줍지 않게 두 번, 세 번 할 필요 있나. 오직 한 번이면 족한거야. - 카곤\""
 }

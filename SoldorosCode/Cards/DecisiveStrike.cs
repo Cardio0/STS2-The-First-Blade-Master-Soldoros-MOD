@@ -28,7 +28,7 @@ public sealed class DecisiveStrike : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new PierceDamageVar(10m),
+        new PierceDamageVar(11m),
     };
 
     public DecisiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
@@ -57,6 +57,6 @@ public sealed class DecisiveStrike : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);   // 10 → 12
+        base.DynamicVars.Damage.UpgradeValueBy(2m);   // 11 → 13
     }
 }

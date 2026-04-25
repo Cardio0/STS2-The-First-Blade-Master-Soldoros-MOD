@@ -9,7 +9,7 @@ using Soldoros.SoldorosCode.Powers;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 무형지경 — 기타 파워. 3 코스트.
+// 무형지경 — 기타 파워. 2 코스트.
 // 류심 공격 카드를 사용할 때마다, 에너지 1를 얻습니다. 업그레이드: 선천성.
 public sealed class StateOfIncorporeity : SoldorosCard
 {
@@ -26,7 +26,7 @@ public sealed class StateOfIncorporeity : SoldorosCard
         new EnergyVar(1),
     };
 
-    public StateOfIncorporeity() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self) { }
+    public StateOfIncorporeity() : base(2, CardType.Power, CardRarity.Ancient, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

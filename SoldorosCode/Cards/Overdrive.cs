@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-// 오버드라이브 — 고급 스킬. 체력 2 손실. 대상 취약 × 2(→3)배. 소멸.
+// 오버드라이브 — 고급 스킬. 체력 3 손실. 대상 취약 × 2(→3)배. 소멸.
 public sealed class Overdrive : SoldorosCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
@@ -29,6 +29,7 @@ public sealed class Overdrive : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
+        new HpLossVar(3m),
         new DynamicVar("Multiplier", 2m),
     };
 
@@ -38,8 +39,8 @@ public sealed class Overdrive : SoldorosCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
-        // 체력 2 손실 (막기 불가, 파워 미적용)
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, 2m,
+        // 체력 손실 (막기 불가, 파워 미적용)
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, null, this);
 
         // 취약 × Multiplier 배

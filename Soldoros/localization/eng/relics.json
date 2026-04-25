@@ -8,7 +8,7 @@
   "SOLDOROS-WEAPON_SELECTOR.flavor": "\"A legendary armor said to resonate with surrounding weapons.\"",
 
   "SOLDOROS-DEMON_SLAVE.title": "Demon Slave",
-  "SOLDOROS-DEMON_SLAVE.description": "At the start of each combat,\nlose 2 HP. Gain 2 [gold]Strength[/gold].",
+  "SOLDOROS-DEMON_SLAVE.description": "At the start of each combat,\nlose 1 HP. Gain 3 [gold]Strength[/gold].",
   "SOLDOROS-DEMON_SLAVE.flavor": "\"My mind... ugh... is going insane.\"",
 
   "SOLDOROS-GOLDEN_HAMMER.title": "Mighty Dwarf's Golden Hammer",
@@ -28,6 +28,6 @@
   "SOLDOROS-SHAPELESS_SWORD_ELENORE.flavor": "\"Having no fixed form, the moment you think you've blocked it, you take the hit.\"",
 
   "SOLDOROS-HALGIS_BONE_RING.title": "Halgi's Bone Ring",
-  "SOLDOROS-HALGIS_BONE_RING.description": "Attack cards deal 25% more damage\nto enemies that intend to attack.",
+  "SOLDOROS-HALGIS_BONE_RING.description": "Attack cards deal 50% more damage\nto enemies that intend to attack.",
   "SOLDOROS-HALGIS_BONE_RING.flavor": "\"One shot is all you need! Why strike twice or three times? Once is enough. - Cargon\""
 }

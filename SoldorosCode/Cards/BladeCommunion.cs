@@ -24,7 +24,7 @@ public sealed class BladeCommunion : SoldorosCard
         new DamageVar(3m, ValueProp.Unpowered),
     };
 
-    public BladeCommunion() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
+    public BladeCommunion() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
