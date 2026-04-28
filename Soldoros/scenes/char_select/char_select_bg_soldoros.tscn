@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://06le804t82ph"]
 
-[ext_resource type="Texture2D" uid="uid://c3xcd3o55icro" path="res://Soldoros/images/charui/char_select_bg_soldoros.png" id="1_bg"]
+[ext_resource type="VideoStream" uid="uid://bobg8kqi4lj5i" path="res://Soldoros/images/charui/char_select_bg_soldoros.ogv" id="1_kyv4f"]
 
 [node name="SoldorosBg" type="Control"]
 layout_mode = 3
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,4 +28,7 @@ offset_right = -104.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_bg")
+stream = ExtResource("1_kyv4f")
+autoplay = true
+loop = true
+expand = true
