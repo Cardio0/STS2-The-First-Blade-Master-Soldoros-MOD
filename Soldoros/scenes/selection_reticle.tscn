@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://soldoros_reticle"]
+[gd_scene load_steps=3 format=3 uid="uid://bn4k7vxrq9mpc"]
 
 [ext_resource type="Script" uid="uid://47j7knbdvdv1" path="res://SoldorosCode/Nodes/SNSelectionReticle.cs" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://w60mi02tajue" path="res://Soldoros/images/ui/combat/combat_reticle.png" id="2_reticle"]
@@ -7,11 +7,11 @@
 script = ExtResource("1_script")
 layout_mode = 3
 anchors_preset = 0
-offset_left = -129.0
-offset_top = -179.0
-offset_right = 123.0
-offset_bottom = -1.0
-pivot_offset = Vector2(126, 84)
+offset_left = -181.5
+offset_top = -354.0
+offset_right = 108.5
+offset_bottom = 9.0
+pivot_offset = Vector2(145, 182)
 mouse_filter = 2
 
 [node name="Border" type="TextureRect" parent="."]

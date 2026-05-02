@@ -55,5 +55,8 @@
   "SOLDOROS-BACKSTEP_POWER.smartDescription": "이번 턴 동안 [gold]민첩[/gold]을 {Amount} 얻습니다.",
   "SOLDOROS-SEVER_POWER.title": "절단",
   "SOLDOROS-SEVER_POWER.description": "이번 턴 동안 [gold]힘[/gold]을 {Amount} 잃습니다.",
-  "SOLDOROS-SEVER_POWER.smartDescription": "이번 턴 동안 [gold]힘[/gold]을 {Amount} 잃습니다."
+  "SOLDOROS-SEVER_POWER.smartDescription": "이번 턴 동안 [gold]힘[/gold]을 {Amount} 잃습니다.",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR_POWER.title": "절망의 탑에서 온 자",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR_POWER.description": "다른 플레이어가 [gold]취약[/gold]을 부여할 때마다,\n[gold]힘[/gold]을 1 얻습니다.",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR_POWER.smartDescription": "다른 플레이어가 [gold]취약[/gold]을 부여할 때마다,\n[gold]힘[/gold]을 1 얻습니다."
 }

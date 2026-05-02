@@ -115,5 +115,12 @@
   "SOLDOROS-ENDLESS_TRAINING.title": "Endless Training",
   "SOLDOROS-ENDLESS_TRAINING.description": "Gain {Block:diff()} [gold]Block[/gold].\nFor the next {EndlessTrainingPower:diff()} turn(s),\nat the start of your turn, gain 1 [gold]Strength[/gold].",
   "SOLDOROS-CONVERSION.title": "Conversion",
-  "SOLDOROS-CONVERSION.description": "Whenever an Attack card removes\n[gold]Block[/gold] from an enemy,\ngain that much [gold]Block[/gold]."
+  "SOLDOROS-CONVERSION.description": "Whenever an Attack card removes\n[gold]Block[/gold] from an enemy,\ngain that much [gold]Block[/gold].",
+  "SOLDOROS-FALSE_EQUILIBRIUM.title": "False Equilibrium",
+  "SOLDOROS-FALSE_EQUILIBRIUM.description": "Gain {Block:diff()} [gold]Block[/gold].\nTarget enemy gains 1 [gold]Block[/gold].",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR.title": "Visitor from the Despair Tower",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR.description": "Whenever another player applies\n[gold]Vulnerable[/gold], gain 1 [gold]Strength[/gold].",
+  "SOLDOROS-GRANDMASTER_AT_ARMS.title": "Grandmaster at Arms",
+  "SOLDOROS-GRANDMASTER_AT_ARMS.description": "All other players draw 2 cards.\nAll other players gain {Energy:energyIcons()}.\nPlace a card from your hand\non top of your [gold]draw pile[/gold].",
+  "SOLDOROS-GRANDMASTER_AT_ARMS.selectionScreenPrompt": "Choose a card to place on top of your draw pile."
 }

@@ -14,8 +14,8 @@ using Soldoros.SoldorosCode.Powers;
 namespace Soldoros.SoldorosCode.Cards;
 
 // 백스텝 — 일반 스킬. 0 코스트. 소멸.
-// 이번 턴 동안 민첩 3 획득. 손에서 카드 1장을 뽑을 카드 더미 맨 위에 놓음.
-// 업그레이드: 민첩 3 → 4.
+// 이번 턴 동안 민첩 4 획득. 손에서 카드 1장을 뽑을 카드 더미 맨 위에 놓음.
+// 업그레이드: 민첩 4 → 5.
 public sealed class Backstep : SoldorosCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
@@ -27,7 +27,7 @@ public sealed class Backstep : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new PowerVar<DexterityPower>(3m),
+        new PowerVar<DexterityPower>(4m),
     };
 
     public Backstep() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self) { }
@@ -50,6 +50,6 @@ public sealed class Backstep : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Dexterity.UpgradeValueBy(1m);   // 3 → 4
+        base.DynamicVars.Dexterity.UpgradeValueBy(1m);   // 4 → 5
     }
 }

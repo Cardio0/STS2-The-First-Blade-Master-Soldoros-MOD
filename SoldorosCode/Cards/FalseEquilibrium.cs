@@ -7,42 +7,33 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Soldoros.SoldorosCode.Cards;
 
-public sealed class UpwardSlash : SoldorosCard
+// 기울어진 균형 — 일반 스킬. 0 코스트.
+// 방어도 5 획득. 대상 적이 방어도 1 획득.
+// 업그레이드: 방어도 5 → 8.
+public sealed class FalseEquilibrium : SoldorosCard
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
-    {
-        get
-        {
-            yield return HoverTipFactory.FromPower<VulnerablePower>();
-        }
-    }
-
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
+        new BlockVar(5m, ValueProp.Move),
     };
 
-    public UpwardSlash() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) { }
+    public FalseEquilibrium() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(cardPlay.Target)
-            .Execute(choiceContext);
-
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, 1, base.Owner.Creature, this);
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        await CreatureCmd.GainBlock(cardPlay.Target, new BlockVar(1m, ValueProp.Unpowered), cardPlay);
     }
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);   // 1 → 0
+        base.DynamicVars.Block.UpgradeValueBy(3m);   // 5 → 8
     }
 }

@@ -76,4 +76,14 @@ public class Soldoros : PlaceholderCharacterModel
             i => $"res://Soldoros/images/ui/combat/energy_counters/soldoros_energy_layer_{i}.png",
             new Color("ffffff"),          // 숫자 텍스트 색 (게임 하드코딩 cream, 변경 불가)
             new Color("8B5010"));        // 숫자 외곽선 색 (갈색, 불투명)
+
+    // 멀티플레이 손 이미지 (가위바위보 + 가리키기)
+    public override string CustomArmPointingTexturePath =>
+        $"res://{MainFile.ModId}/images/soldoros/hands/multiplayer_hand_soldoros_point.png";
+    public override string CustomArmRockTexturePath =>
+        $"res://{MainFile.ModId}/images/soldoros/hands/multiplayer_hand_soldoros_rock.png";
+    public override string CustomArmPaperTexturePath =>
+        $"res://{MainFile.ModId}/images/soldoros/hands/multiplayer_hand_soldoros_paper.png";
+    public override string CustomArmScissorsTexturePath =>
+        $"res://{MainFile.ModId}/images/soldoros/hands/multiplayer_hand_soldoros_scissor.png";
 }

@@ -55,5 +55,8 @@
   "SOLDOROS-BACKSTEP_POWER.smartDescription": "Gain {Amount} [gold]Dexterity[/gold] for this turn.",
   "SOLDOROS-SEVER_POWER.title": "Sever",
   "SOLDOROS-SEVER_POWER.description": "Lose {Amount} [gold]Strength[/gold] for this turn.",
-  "SOLDOROS-SEVER_POWER.smartDescription": "Lose {Amount} [gold]Strength[/gold] for this turn."
+  "SOLDOROS-SEVER_POWER.smartDescription": "Lose {Amount} [gold]Strength[/gold] for this turn.",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR_POWER.title": "Visitor from the Despair Tower",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR_POWER.description": "Whenever another player applies\n[gold]Vulnerable[/gold], gain 1 [gold]Strength[/gold].",
+  "SOLDOROS-DESPAIR_TOWER_VISITOR_POWER.smartDescription": "Whenever another player applies\n[gold]Vulnerable[/gold], gain 1 [gold]Strength[/gold]."
 }

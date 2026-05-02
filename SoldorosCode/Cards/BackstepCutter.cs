@@ -16,8 +16,8 @@ public sealed class BackstepCutter : SoldorosCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(8m, ValueProp.Move),
-        new BlockVar(8m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
+        new BlockVar(10m, ValueProp.Move),
     };
 
     public BackstepCutter() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
@@ -46,7 +46,7 @@ public sealed class BackstepCutter : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);     // 8 → 10
-        base.DynamicVars["Block"].UpgradeValueBy(2m);   // 8 → 10
+        base.DynamicVars.Damage.UpgradeValueBy(2m);     // 10 → 12
+        base.DynamicVars["Block"].UpgradeValueBy(2m);   // 10 → 12
     }
 }

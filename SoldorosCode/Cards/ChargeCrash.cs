@@ -20,10 +20,10 @@ public sealed class ChargeCrash : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
+        new DamageVar(4m, ValueProp.Move),
     };
 
-    public ChargeCrash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
+    public ChargeCrash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -37,6 +37,6 @@ public sealed class ChargeCrash : SoldorosCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(4m);   // 3 → 7
+        base.DynamicVars.Damage.UpgradeValueBy(4m);   // 4 → 8
     }
 }
