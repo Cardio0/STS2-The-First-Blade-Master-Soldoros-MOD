@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4blaqi5lmysx" path="res://Soldoros/images/character/soldoros_normal.png" id="2_texture"]
 
 [node name="SoldorosMerchant" type="Node2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_script")
 
 [node name="Sprite" type="Sprite2D" parent="."]
