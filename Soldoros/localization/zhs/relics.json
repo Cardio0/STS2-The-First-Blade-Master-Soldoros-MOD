@@ -1,0 +1,33 @@
+{
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.title": "魔剑·克拉丽斯",
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.description": "每场战斗开始时，将[gold]魔剑·克拉丽斯[/gold]加入你的手牌。",
+  "SOLDOROS-EGOSWORD_CLARARIS_RELIC.flavor": "「此剑，会自主选择它的主人。」",
+
+  "SOLDOROS-WEAPON_SELECTOR.title": "武器遴选者",
+  "SOLDOROS-WEAPON_SELECTOR.description": "每完成7场战斗，获得1个随机[gold]遗物[/gold]。",
+  "SOLDOROS-WEAPON_SELECTOR.flavor": "「一件传说护甲，据说能与周遭的武器产生共鸣。」",
+
+  "SOLDOROS-DEMON_SLAVE.title": "缚魔之契",
+  "SOLDOROS-DEMON_SLAVE.description": "每场战斗开始时，失去1点生命值。获得3点[gold]力量[/gold]。",
+  "SOLDOROS-DEMON_SLAVE.flavor": "「我的神智……呃啊……快要癫狂了。」",
+
+  "SOLDOROS-GOLDEN_HAMMER.title": "巨矮人之金锤",
+  "SOLDOROS-GOLDEN_HAMMER.description": "获取时，随机升级3张费用为2或以上的卡牌。",
+  "SOLDOROS-GOLDEN_HAMMER.flavor": "「沉重无比，破坏力却堪称恐怖！」",
+
+  "SOLDOROS-HELLO_GUISH.title": "冰精灵桂什之佑",
+  "SOLDOROS-HELLO_GUISH.description": "每当你施加[gold]虚弱[/gold]时，同时施加[gold]易伤[/gold]。",
+  "SOLDOROS-HELLO_GUISH.flavor": "「执掌冰之魔法的精灵桂什，为你降下祝福。」",
+
+  "SOLDOROS-SOLDOROS_DECISION.title": "索德罗斯的抉择",
+  "SOLDOROS-SOLDOROS_DECISION.description": "每场战斗开始时，你每拥有5个[gold]遗物[/gold]，获得1点[gold]力量[/gold]。",
+  "SOLDOROS-SOLDOROS_DECISION.flavor": "「这最适合你。——索德罗斯——」",
+
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.title": "无型之剑·埃莉诺",
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.description": "攻击牌对拥有[gold]格挡[/gold]的敌人造成双倍伤害。",
+  "SOLDOROS-SHAPELESS_SWORD_ELENORE.flavor": "「此剑无定形，当你以为格挡成功时，已然中招。」",
+
+  "SOLDOROS-HALGIS_BONE_RING.title": "骸麒的骨戒",
+  "SOLDOROS-HALGIS_BONE_RING.description": "攻击牌对意图攻击的敌人造成50%额外伤害。",
+  "SOLDOROS-HALGIS_BONE_RING.flavor": "「破招攻击，一击制胜。」"
+}

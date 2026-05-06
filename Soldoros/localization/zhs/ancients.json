@@ -1,0 +1,94 @@
+{
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-0r.char": "以剑论道吧。",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-0r.next": "以剑论道",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-1r.ancient": "剑术大师……倒是有趣。",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.0-attack": "Both",
+
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-0r.char": "我回来了。拿出你全部的实力吧。",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-0r.next": "以剑论道",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-1r.ancient": "哼……那我便再陪你一战。",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.1-attack": "Both",
+
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-0r.char": "接下我在此磨砺的力量。",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-0r.next": "以剑论道",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-1r.ancient": "……你愈发强大了。",
+  "THE_ARCHITECT.talk.SOLDOROS-SOLDOROS.2-attack": "Both",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "……剑魂始祖到访。让我为你疗伤。",
+  "NEOW.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "……你又踏上登塔之路。修行从不止步。",
+  "NEOW.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "NEOW.talk.SOLDOROS-SOLDOROS.2-0r.ancient": "……你又归来，执剑之心从未改变。",
+  "NEOW.talk.SOLDOROS-SOLDOROS.2-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "噢！万千兵器……不愧是剑魂始祖！",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-0r.next": "……",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-1r.char": "……让我看看你的宝物。",
+  "DARV.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "欢迎回来！今天我这儿有好东西。",
+  "DARV.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "DARV.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "你一次强过一次……说实话，我心生忌惮。",
+  "DARV.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "哦呵……生面孔，在寻稀世之物？",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "你回来了，看中什么尽管取。",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "我已记你容颜……我知你所求何物。",
+  "NONUPEIPE.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "我好奇，剑魂始祖携何等神兵。",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-0r.next": "……",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-1r.char": "若能助我变强，我便考虑。",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "你回来了，此次想做何等交易？",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "OROBAS.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "与你打交道，总是……很有趣。",
+  "OROBAS.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "初次到访。剑士，你在寻找什么？",
+  "PAEL.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "你回来了，上次之物可还合用？",
+  "PAEL.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "PAEL.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "如今已是此间常客。",
+  "PAEL.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "噢！新面孔！你需要什么？",
+  "TANX.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "又来啦！此次要带走何物？",
+  "TANX.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "TANX.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "我已懂你的喜好，且让我一寻……",
+  "TANX.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "哎呀，新客人。要吃点东西吗？",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-0r.next": "……",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-1r.char": "……多谢。",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "你回来了。我已为你备好食物。",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "你来了，欲战必先饱腹。",
+  "TEZCATARA.talk.SOLDOROS-SOLDOROS.4-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.0-0r.ancient": "……啊，剑士，有何需求但说无妨。",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.0-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.1-0r.ancient": "……你又来了。这次想要什么。",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.1-attack": "None",
+
+  "VAKUU.talk.SOLDOROS-SOLDOROS.4-0r.ancient": "……你屡次前来。我能看出，你在变强。",
+  "VAKUU.talk.SOLDOROS-SOLDOROS.4-attack": "None"
+}

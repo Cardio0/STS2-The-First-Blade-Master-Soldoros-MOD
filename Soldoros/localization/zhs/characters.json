@@ -1,0 +1,16 @@
+{
+  "SOLDOROS-SOLDOROS.title": "剑魂始祖·索德罗斯",
+  "SOLDOROS-SOLDOROS.titleObject": "索德罗斯",
+  "SOLDOROS-SOLDOROS.description": "行走于极致剑道的初代剑魂，以万古剑术斩尽一切敌手。",
+  "SOLDOROS-SOLDOROS.pronounSubject": "他",
+  "SOLDOROS-SOLDOROS.pronounObject": "他",
+  "SOLDOROS-SOLDOROS.pronounPossessive": "他的",
+  "SOLDOROS-SOLDOROS.possessiveAdjective": "他的",
+  "SOLDOROS-SOLDOROS.goldMonologue": "[sine]这些财富，足以支撑我的无尽修行……[/sine]",
+  "SOLDOROS-SOLDOROS.eventDeathPrevention": "我绝不会在此倒下，剑道未竟！",
+  "SOLDOROS-SOLDOROS.aromaPrinciple": "[sine]剑，乃灵魂之延伸……[/sine]",
+  "SOLDOROS-SOLDOROS.cardsModifierTitle": "索德罗斯专属卡牌",
+  "SOLDOROS-SOLDOROS.cardsModifierDescription": "索德罗斯的专属卡牌将出现在奖励与商店中。",
+  "SOLDOROS-SOLDOROS.banter.alive.endTurnPing": "速战速决。",
+  "SOLDOROS-SOLDOROS.banter.dead.endTurnPing": "……"
+}

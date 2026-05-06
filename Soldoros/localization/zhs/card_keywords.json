@@ -1,0 +1,8 @@
+{
+  "SOLDOROS-UNIQUE.title": "独有",
+  "SOLDOROS-UNIQUE.description": "此卡牌为专属卡牌，无法更改。",
+  "SOLDOROS-RESONANCE.title": "剑意共鸣",
+  "SOLDOROS-RESONANCE.description": "使用此牌时，其伤害翻倍。",
+  "SOLDOROS-PIERCE.title": "破锋",
+  "SOLDOROS-PIERCE.description": "移除目标所有易伤层数，每移除一层，额外造成[blue]100%[/blue]伤害。"
+}
