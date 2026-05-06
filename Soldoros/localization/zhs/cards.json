@@ -95,7 +95,7 @@
   "SOLDOROS-STRIKE_SOLDOROS.description": "造成{Damage:diff()}点伤害。",
   "SOLDOROS-DEFEND_SOLDOROS.title": "格挡",
   "SOLDOROS-DEFEND_SOLDOROS.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
-  "SOLDOROS-CLARIS_CALL.title": "克拉丽斯的呼唤",
+  "SOLDOROS-CLARIS_CALL.title": "克蕾雅...",
   "SOLDOROS-CLARIS_CALL.description": "无论其在何处，将[gold]魔剑·克拉丽斯[/gold]置入手牌。\n获得{Block:diff()}点[gold]格挡[/gold]。",
   "SOLDOROS-REAR_ATTACK.title": "背击突袭",
   "SOLDOROS-REAR_ATTACK.description": "攻击牌对拥有[gold]格挡[/gold]的敌人\n伤害翻倍。",
