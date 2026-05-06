@@ -68,6 +68,7 @@ Slay the Spire 2/
 
 - 🇰🇷 한국어 (Korean)
 - 🇺🇸 영어 (English)
+- 🇨🇳 중국어 (zhs) — Special Thanks to ChengZi47
 ---
 
 ## 멀티플레이어 지원
