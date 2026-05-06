@@ -97,7 +97,7 @@
   "SOLDOROS-DEFEND_SOLDOROS.title": "수비",
   "SOLDOROS-DEFEND_SOLDOROS.description": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
   "SOLDOROS-DEFEND_SOLDOROS.smartDescription": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
-  "SOLDOROS-CLARIS_CALL.title": "클레어\u2026",
+  "SOLDOROS-CLARIS_CALL.title": "클레어...",
   "SOLDOROS-CLARIS_CALL.description": "어디에 있든 [gold]에고소드 클라리스[/gold]를\n[gold]손[/gold]으로 가져옵니다.\n[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
   "SOLDOROS-REAR_ATTACK.title": "백어택",
   "SOLDOROS-REAR_ATTACK.description": "[gold]방어도[/gold]를 보유한 적에게 사용하는\n공격 카드의 피해량이 2배로 증가합니다.",
