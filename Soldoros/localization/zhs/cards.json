@@ -1,6 +1,6 @@
 {
   "SOLDOROS-EGOSWORD_CLARARIS.title": "魔剑·克拉丽斯",
-  "SOLDOROS-EGOSWORD_CLARARIS.description": "[gold]独有[/gold]。{剑意共鸣}\n造成{Damage:diff()}点伤害。\n每当此牌从\n抽牌堆移入手牌时，\n对所有敌人造成{DrawDamage:diff()}点伤害。",
+  "SOLDOROS-EGOSWORD_CLARARIS.description": "[gold]独有[/gold]。{ResonanceKeyword}\n造成{Damage:diff()}点伤害。\n每当此牌从\n抽牌堆移入手牌时，\n对所有敌人造成{DrawDamage:diff()}点伤害。",
   "SOLDOROS-ASHE_FORK.title": "灰锋突刺",
   "SOLDOROS-ASHE_FORK.description": "[gold]破锋[/gold]。\n造成{Damage:diff()}点伤害。",
   "SOLDOROS-UPWARD_SLASH.title": "上挑",
