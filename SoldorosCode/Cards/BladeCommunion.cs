@@ -30,10 +30,10 @@ public sealed class BladeCommunion : SoldorosCard
     {
         if (base.CombatState is null) return;
 
-        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, base.DynamicVars.Damage.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Damage.BaseValue, base.Owner.Creature, this);
 
         foreach (Creature enemy in base.CombatState.HittableEnemies)
-            await PowerCmd.Apply<StrengthPower>(enemy, 1, base.Owner.Creature, this);
+            await PowerCmd.Apply<StrengthPower>(choiceContext, enemy, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

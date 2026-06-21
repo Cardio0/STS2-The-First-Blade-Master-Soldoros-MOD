@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Soldoros.SoldorosCode.Powers;
 
@@ -21,12 +22,12 @@ public sealed class OmnislayMindsSwordPower : SoldorosPower
         HoverTipFactory.FromPower<DoubleDamagePower>(),
     };
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side == CombatSide.Player)
         {
             Flash();
-            await PowerCmd.Apply<DoubleDamagePower>(base.Owner, 1, base.Owner, null);
+            await PowerCmd.Apply<DoubleDamagePower>(new BlockingPlayerChoiceContext(), base.Owner, 1, base.Owner, null);
             await PowerCmd.TickDownDuration(this);
         }
     }

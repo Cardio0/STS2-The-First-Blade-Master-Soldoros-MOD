@@ -66,7 +66,9 @@ public sealed class OmnislayShootingStar : SoldorosCard
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        int unblocked = cmd.Results.Sum(r => r.UnblockedDamage);
+        int unblocked = 0;
+        foreach (var results in cmd.Results)
+            foreach (var r in results) unblocked += r.UnblockedDamage;
         if (unblocked > 0)
             await CreatureCmd.GainBlock(base.Owner.Creature, (decimal)unblocked, ValueProp.Unpowered, cardPlay);
     }

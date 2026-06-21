@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -47,10 +48,10 @@ public sealed class OmnislayMindsSword : SoldorosCard
         if (handCards.Any())
         {
             PileType.Draw.GetPile(base.Owner).RandomizeOrderInternal(
-                base.Owner, base.Owner.RunState.Rng.Shuffle, base.CombatState!);
+                base.Owner, base.Owner.RunState.Rng.Shuffle, (CombatState)base.CombatState!);
         }
 
-        await PowerCmd.Apply<OmnislayMindsSwordPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
+        await PowerCmd.Apply<OmnislayMindsSwordPower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

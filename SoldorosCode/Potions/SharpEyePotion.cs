@@ -36,7 +36,7 @@ public sealed class SharpEyePotion : SoldorosPotion
             int stacks = enemy.GetPowerAmount<VulnerablePower>();
             if (stacks <= 0) continue;
             int add = stacks * 2; // 현재 × 3배 = 현재 + 현재 × 2
-            await PowerCmd.Apply<VulnerablePower>(enemy, add, base.Owner.Creature, null);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, add, base.Owner.Creature, null);
         }
     }
 }

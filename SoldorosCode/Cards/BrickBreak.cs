@@ -43,7 +43,7 @@ public sealed class BrickBreak : SoldorosCard
             await PowerCmd.Remove<ArtifactPower>(cardPlay.Target);
 
         // 약화 부여
-        await PowerCmd.Apply<WeakPower>(cardPlay.Target, base.DynamicVars["Weak"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target, base.DynamicVars["Weak"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

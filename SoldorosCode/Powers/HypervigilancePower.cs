@@ -36,6 +36,6 @@ public sealed class HypervigilancePower : SoldorosPower
         if (result.UnblockedDamage <= 0) return;
 
         Flash();
-        await PowerCmd.Apply<StrengthPower>(base.Owner, base.Amount, base.Owner, null);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
     }
 }

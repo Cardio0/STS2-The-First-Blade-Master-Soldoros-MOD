@@ -26,7 +26,7 @@ public sealed class DespairTowerVisitor : SoldorosCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<DespairTowerVisitorPower>(base.Owner.Creature, 1, base.Owner.Creature, this);
+        await PowerCmd.Apply<DespairTowerVisitorPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -36,6 +36,6 @@ public sealed class SwordQiMasterPower : SoldorosPower
         if (result.UnblockedDamage <= 0) return;
 
         Flash();
-        await PowerCmd.Apply<WeakPower>(target, base.Amount, base.Owner, null);
+        await PowerCmd.Apply<WeakPower>(choiceContext, target, base.Amount, base.Owner, null);
     }
 }

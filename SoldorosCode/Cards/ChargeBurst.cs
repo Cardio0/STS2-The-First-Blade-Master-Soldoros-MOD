@@ -50,7 +50,7 @@ public sealed class ChargeBurst : SoldorosCard
         int current = cardPlay.Target.IsAlive ? cardPlay.Target.GetPowerAmount<VulnerablePower>() : 0;
         if (current > 0)
         {
-            await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, current, base.Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, current, base.Owner.Creature, this);
         }
     }
 

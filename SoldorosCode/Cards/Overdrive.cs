@@ -49,7 +49,7 @@ public sealed class Overdrive : SoldorosCard
         {
             int multiplier = (int)base.DynamicVars["Multiplier"].BaseValue;
             int add = current * (multiplier - 1);
-            await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, add, base.Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, add, base.Owner.Creature, this);
         }
     }
 

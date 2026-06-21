@@ -27,7 +27,7 @@ public sealed class SentientBlade : SoldorosCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SentientBladePower>(base.Owner.Creature, base.DynamicVars.Block.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SentientBladePower>(choiceContext, base.Owner.Creature, base.DynamicVars.Block.BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

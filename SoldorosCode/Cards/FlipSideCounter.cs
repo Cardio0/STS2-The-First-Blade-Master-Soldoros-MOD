@@ -42,7 +42,7 @@ public sealed class FlipSideCounter : SoldorosCard
         if (cardPlay.Target.Monster?.IntendsToAttack ?? false)
         {
             int vulnAmount = (int)base.DynamicVars["VulnAmount"].BaseValue;
-            await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, vulnAmount, base.Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, vulnAmount, base.Owner.Creature, this);
         }
     }
 

@@ -32,7 +32,7 @@ public sealed class ChargeCrash : SoldorosCard
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, 2, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, 2, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

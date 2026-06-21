@@ -14,13 +14,13 @@ public sealed class EgoswordClararisRelic : SoldorosRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != base.Owner || combatState.RoundNumber != 1)
             return;
 
         Flash();
         CardModel card = combatState.CreateCard<EgoswordClararis>(base.Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner);
     }
 }

@@ -22,8 +22,8 @@ public sealed class DanjinsPot : SoldorosPotion
         AssertValidForTargetedPotion(target);
         NCombatRoom.Instance?.PlaySplashVfx(target, Colors.Green);
 
-        await CardPileCmd.AddToCombatAndPreview<FlowingStanceRise>(base.Owner.Creature, PileType.Hand, 1, true, CardPilePosition.Top);
-        await CardPileCmd.AddToCombatAndPreview<FlowingStanceSwift>(base.Owner.Creature, PileType.Hand, 1, true, CardPilePosition.Top);
-        await CardPileCmd.AddToCombatAndPreview<FlowingStanceClash>(base.Owner.Creature, PileType.Hand, 1, true, CardPilePosition.Top);
+        await CardPileCmd.AddToCombatAndPreview<FlowingStanceRise>(base.Owner.Creature, PileType.Hand, 1, base.Owner, CardPilePosition.Top);
+        await CardPileCmd.AddToCombatAndPreview<FlowingStanceSwift>(base.Owner.Creature, PileType.Hand, 1, base.Owner, CardPilePosition.Top);
+        await CardPileCmd.AddToCombatAndPreview<FlowingStanceClash>(base.Owner.Creature, PileType.Hand, 1, base.Owner, CardPilePosition.Top);
     }
 }

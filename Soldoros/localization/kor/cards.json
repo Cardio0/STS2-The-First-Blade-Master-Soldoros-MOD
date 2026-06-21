@@ -1,6 +1,6 @@
 {
   "SOLDOROS-EGOSWORD_CLARARIS.title": "에고소드 클라리스",
-  "SOLDOROS-EGOSWORD_CLARARIS.description": "[gold]유일[/gold].{ResonanceKeyword}\n피해를 {Damage:diff()} 줍니다.\n이 카드가 뽑을 카드 더미에서\n손으로 이동할 때마다,\n모든 적에게\n피해를 {DrawDamage:diff()} 줍니다.",
+  "SOLDOROS-EGOSWORD_CLARARIS.description": "[gold]유일[/gold].{ResonanceKeyword}\n피해를 {Damage:diff()} 줍니다.\n이 카드가 [gold]뽑을 카드 더미[/gold]에서\n[gold]손[/gold]으로 이동할 때마다,\n모든 적에게\n피해를 {DrawDamage:diff()} 줍니다.",
   "SOLDOROS-ASHE_FORK.title": "에쉔 포크",
   "SOLDOROS-ASHE_FORK.description": "[gold]꿰뚫기[/gold].\n피해를 {Damage:diff()} 줍니다.",
   "SOLDOROS-UPWARD_SLASH.title": "어퍼 슬래시",

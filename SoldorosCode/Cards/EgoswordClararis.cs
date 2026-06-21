@@ -91,7 +91,8 @@ public sealed class EgoswordClararis : CustomCardModel
     }
 
     // 유일 키워드: 플레이 후 소멸이 아닌 버리기 더미로
-    protected override PileType GetResultPileType() => PileType.Discard;
+    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)
+        => card == this ? (PileType.Discard, position) : (pileType, position);
 
     // 유일 키워드: 복사본이 어느 더미에 추가되든 즉시 전투에서 완전 제거
     //

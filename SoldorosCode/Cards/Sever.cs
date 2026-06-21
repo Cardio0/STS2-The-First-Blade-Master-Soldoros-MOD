@@ -45,7 +45,7 @@ public sealed class Sever : SoldorosCard
 
         foreach (Creature enemy in enemies)
         {
-            await PowerCmd.Apply<SeverPower>(enemy, base.DynamicVars["StrengthLoss"].BaseValue, base.Owner.Creature, this);
+            await PowerCmd.Apply<SeverPower>(choiceContext, enemy, base.DynamicVars["StrengthLoss"].BaseValue, base.Owner.Creature, this);
         }
     }
 

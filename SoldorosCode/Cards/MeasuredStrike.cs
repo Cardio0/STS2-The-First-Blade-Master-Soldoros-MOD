@@ -39,7 +39,7 @@ public sealed class MeasuredStrike : SoldorosCard
 
         CardModel token = CreateRandomFlowingStanceToken();
         await CardPileCmd.AddGeneratedCardsToCombat(
-            new[] { token }, PileType.Hand, addedByPlayer: true);
+            new[] { token }, PileType.Hand, cardPlay.Card.Owner);
     }
 
     // Rng.Shuffle 을 사용해 0~2 무작위 선택 → 류심 승/쾌/충 중 하나 생성

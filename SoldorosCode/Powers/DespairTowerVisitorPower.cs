@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Soldoros.SoldorosCode.Powers;
@@ -22,6 +23,7 @@ public sealed class DespairTowerVisitorPower : SoldorosPower
     };
 
     public override async Task AfterPowerAmountChanged(
+        PlayerChoiceContext choiceContext,
         PowerModel power,
         decimal amount,
         Creature? applier,
@@ -33,6 +35,6 @@ public sealed class DespairTowerVisitorPower : SoldorosPower
         if (applier == base.Owner) return;   // 자신이 부여한 취약 제외
 
         Flash();
-        await PowerCmd.Apply<StrengthPower>(base.Owner, 1, base.Owner, null);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner, 1, base.Owner, null);
     }
 }

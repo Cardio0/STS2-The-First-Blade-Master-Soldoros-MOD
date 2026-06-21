@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
@@ -20,6 +21,6 @@ public sealed class SoldorosDecision : SoldorosRelic
         if (strength <= 0) return;
 
         Flash();
-        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, strength, null, null);
+        await PowerCmd.Apply<StrengthPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, strength, null, null);
     }
 }

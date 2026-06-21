@@ -39,10 +39,10 @@ public sealed class UltimateSlayIronStrikePower : SoldorosPower
         if (result.UnblockedDamage <= 0) return;
 
         Flash();
-        await PowerCmd.Apply<VulnerablePower>(target, base.Amount, base.Owner, null);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, target, base.Amount, base.Owner, null);
     }
 
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side) return;
         await PowerCmd.Remove(this);

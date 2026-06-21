@@ -1,6 +1,6 @@
 {
   "SOLDOROS-EGOSWORD_CLARARIS.title": "Egosword Clararis",
-  "SOLDOROS-EGOSWORD_CLARARIS.description": "[gold]Unique[/gold].{ResonanceKeyword}\nDeal {Damage:diff()} damage.\nWhenever this card moves from\nyour draw pile to your hand,\ndeal {DrawDamage:diff()} damage to ALL enemies.",
+  "SOLDOROS-EGOSWORD_CLARARIS.description": "[gold]Unique[/gold].{ResonanceKeyword}\nDeal {Damage:diff()} damage.\nWhenever this card moves from\nyour [gold]draw pile[/gold] to your [gold]hand[/gold],\ndeal {DrawDamage:diff()} damage to ALL enemies.",
   "SOLDOROS-ASHE_FORK.title": "Ashe Fork",
   "SOLDOROS-ASHE_FORK.description": "[gold]Pierce[/gold].\nDeal {Damage:diff()} damage.",
   "SOLDOROS-UPWARD_SLASH.title": "Upward Slash",

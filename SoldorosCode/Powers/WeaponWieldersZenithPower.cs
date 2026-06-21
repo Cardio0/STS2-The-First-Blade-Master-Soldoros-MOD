@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -30,15 +31,15 @@ public sealed class WeaponWieldersZenithPower : SoldorosPower
         if (!cardPlay.Card.VisualCardPool.IsColorless) return;
 
         Flash();
-        await PowerCmd.Apply<StrengthPower>(base.Owner, base.Amount, base.Owner, null, silent: true);
+        await PowerCmd.Apply<StrengthPower>(context, base.Owner, base.Amount, base.Owner, null, silent: true);
         _strengthApplied += base.Amount;
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side) return;
         await PowerCmd.Remove(this);
         if (_strengthApplied > 0)
-            await PowerCmd.Apply<StrengthPower>(base.Owner, -_strengthApplied, base.Owner, null, silent: true);
+            await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner, -_strengthApplied, base.Owner, null, silent: true);
     }
 }

@@ -54,7 +54,7 @@ public sealed class ClarisCall : SoldorosCard
                 // 어디에도 없을 때만 새로 생성
                 EgoswordClararis newCard = base.CombatState.CreateCard<EgoswordClararis>(base.Owner);
                 await CardPileCmd.AddGeneratedCardsToCombat(
-                    new List<CardModel> { newCard }, PileType.Hand, addedByPlayer: true);
+                    new List<CardModel> { newCard }, PileType.Hand, cardPlay.Card.Owner);
             }
         }
 

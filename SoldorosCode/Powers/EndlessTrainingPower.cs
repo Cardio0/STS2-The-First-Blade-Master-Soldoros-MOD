@@ -26,7 +26,7 @@ public sealed class EndlessTrainingPower : SoldorosPower
         if (player != base.Owner.Player) return;
 
         Flash();
-        await PowerCmd.Apply<StrengthPower>(base.Owner, 1m, base.Owner, null);
+        await PowerCmd.Apply<StrengthPower>(new BlockingPlayerChoiceContext(), base.Owner, 1m, base.Owner, null);
         await PowerCmd.Decrement(this);
     }
 }

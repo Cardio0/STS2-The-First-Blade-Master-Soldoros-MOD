@@ -41,7 +41,7 @@ public sealed class AerialChainSlash : SoldorosCard
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        await PowerCmd.Apply<WeakPower>(cardPlay.Target, xValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target, xValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade() { }  // X → X+1 (IsUpgraded 플래그로 처리, 스탯 변경 없음)

@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -12,7 +13,7 @@ public sealed class HelloGuish : SoldorosRelic
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (power is not WeakPower) return;
         if (applier != base.Owner.Creature) return;
@@ -20,6 +21,6 @@ public sealed class HelloGuish : SoldorosRelic
         if (power.Owner.Side == base.Owner.Creature.Side) return;
 
         Flash();
-        await PowerCmd.Apply<VulnerablePower>(power.Owner, amount, base.Owner.Creature, cardSource);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, power.Owner, amount, base.Owner.Creature, cardSource);
     }
 }

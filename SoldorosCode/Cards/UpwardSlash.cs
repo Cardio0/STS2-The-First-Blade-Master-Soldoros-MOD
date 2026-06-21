@@ -38,7 +38,7 @@ public sealed class UpwardSlash : SoldorosCard
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, 1, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

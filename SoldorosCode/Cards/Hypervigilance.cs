@@ -23,7 +23,7 @@ public sealed class Hypervigilance : SoldorosCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<HypervigilancePower>(base.Owner.Creature, 1, base.Owner.Creature, this);
+        await PowerCmd.Apply<HypervigilancePower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

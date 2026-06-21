@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,7 +16,7 @@ public sealed class DemonSlave : SoldorosRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Creature.Side) return;
         if (combatState.RoundNumber != 1) return;
@@ -23,6 +24,6 @@ public sealed class DemonSlave : SoldorosRelic
         Flash();
         await CreatureCmd.Damage(choiceContext, base.Owner.Creature, 1m,
             ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, 3m, null, null);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner.Creature, 3m, null, null);
     }
 }

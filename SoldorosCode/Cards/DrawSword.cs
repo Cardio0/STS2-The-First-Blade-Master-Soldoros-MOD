@@ -38,7 +38,7 @@ public sealed class DrawSword : SoldorosCard
 
         foreach (Creature enemy in base.CombatState.HittableEnemies.ToList())
         {
-            await PowerCmd.Apply<VulnerablePower>(enemy, 1, base.Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, 1, base.Owner.Creature, this);
         }
     }
 

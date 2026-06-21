@@ -21,7 +21,7 @@ public sealed class FlowingStanceForce : SoldorosCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<FlowingStanceForcePower>(base.Owner.Creature, base.DynamicVars["FlowingStanceForcePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FlowingStanceForcePower>(choiceContext, base.Owner.Creature, base.DynamicVars["FlowingStanceForcePower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

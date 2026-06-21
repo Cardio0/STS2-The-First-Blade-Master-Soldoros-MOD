@@ -22,7 +22,7 @@ public sealed class WeaponWieldersZenith : SoldorosCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WeaponWieldersZenithPower>(base.Owner.Creature, 2m, base.Owner.Creature, this);
+        await PowerCmd.Apply<WeaponWieldersZenithPower>(choiceContext, base.Owner.Creature, 2m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

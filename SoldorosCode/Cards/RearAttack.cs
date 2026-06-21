@@ -27,7 +27,7 @@ public sealed class RearAttack : SoldorosCard
 
         // Tracking 패턴: 파워가 이미 있으면 +1, 없으면 2로 시작
         decimal amount = base.Owner.Creature.HasPower<RearAttackPower>() ? 1m : 2m;
-        await PowerCmd.Apply<RearAttackPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
+        await PowerCmd.Apply<RearAttackPower>(choiceContext, base.Owner.Creature, amount, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

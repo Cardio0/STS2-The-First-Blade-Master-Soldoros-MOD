@@ -45,6 +45,6 @@ public sealed class FlowingStance : SoldorosCard
         if (IsUpgraded)
             foreach (var t in tokens) t.UpgradeInternal();
 
-        await CardPileCmd.AddGeneratedCardsToCombat(tokens, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(tokens, PileType.Hand, cardPlay.Card.Owner);
     }
 }

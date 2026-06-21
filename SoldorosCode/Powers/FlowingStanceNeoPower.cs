@@ -28,6 +28,6 @@ public sealed class FlowingStanceNeoPower : SoldorosPower
         if (!props.IsPoweredAttack()) return;
         if (cardSource?.VisualCardPool.IsColorless != true) return;
 
-        await PowerCmd.Apply<FlowingStanceNeoStrengthDownPower>(target, base.Amount, base.Owner, null);
+        await PowerCmd.Apply<FlowingStanceNeoStrengthDownPower>(choiceContext, target, base.Amount, base.Owner, null);
     }
 }
