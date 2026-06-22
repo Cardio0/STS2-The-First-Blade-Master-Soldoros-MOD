@@ -124,5 +124,7 @@
   "SOLDOROS-DESPAIR_TOWER_VISITOR.description": "다른 플레이어가 [gold]취약[/gold]을 부여할 때마다,\n[gold]힘[/gold]을 1 얻습니다.",
   "SOLDOROS-GRANDMASTER_AT_ARMS.title": "무기의 달인",
   "SOLDOROS-GRANDMASTER_AT_ARMS.description": "다른 모든 플레이어가 카드를 2장 뽑습니다.\n다른 모든 플레이어가 {Energy:energyIcons()}를 얻습니다.\n자신의 [gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
-  "SOLDOROS-GRANDMASTER_AT_ARMS.selectionScreenPrompt": "뽑을 카드 더미 맨 위에 놓을 카드를 선택하세요."
+  "SOLDOROS-GRANDMASTER_AT_ARMS.selectionScreenPrompt": "뽑을 카드 더미 맨 위에 놓을 카드를 선택하세요.",
+  "SOLDOROS-FAIR_AND_SQUARE.title": "정정당당",
+  "SOLDOROS-FAIR_AND_SQUARE.description": "[gold]판금[/gold]을 {PlatingPower:diff()} 얻습니다.\n모든 적이 [gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n모든 적이 [gold]판금[/gold]을 {EnemyPlating:diff()} 얻습니다."
 }

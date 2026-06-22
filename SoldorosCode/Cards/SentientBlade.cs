@@ -23,6 +23,8 @@ public sealed class SentientBlade : SoldorosCard
         new BlockVar(6m, ValueProp.Move),
     };
 
+    public override bool GainsBlock => false;
+
     public SentientBlade() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

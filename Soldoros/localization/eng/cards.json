@@ -122,5 +122,7 @@
   "SOLDOROS-DESPAIR_TOWER_VISITOR.description": "Whenever another player applies\n[gold]Vulnerable[/gold], gain 1 [gold]Strength[/gold].",
   "SOLDOROS-GRANDMASTER_AT_ARMS.title": "Grandmaster at Arms",
   "SOLDOROS-GRANDMASTER_AT_ARMS.description": "All other players draw 2 cards.\nAll other players gain {Energy:energyIcons()}.\nPlace a card from your hand\non top of your [gold]draw pile[/gold].",
-  "SOLDOROS-GRANDMASTER_AT_ARMS.selectionScreenPrompt": "Choose a card to place on top of your draw pile."
+  "SOLDOROS-GRANDMASTER_AT_ARMS.selectionScreenPrompt": "Choose a card to place on top of your draw pile.",
+  "SOLDOROS-FAIR_AND_SQUARE.title": "Fair and Square",
+  "SOLDOROS-FAIR_AND_SQUARE.description": "Gain {PlatingPower:diff()} [gold]Plated Armor[/gold].\nAll enemies gain {Block:diff()} [gold]Block[/gold].\nAll enemies gain {EnemyPlating:diff()} [gold]Plated Armor[/gold]."
 }

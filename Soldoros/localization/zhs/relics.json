@@ -29,5 +29,9 @@
 
   "SOLDOROS-HALGIS_BONE_RING.title": "骸麒的骨戒",
   "SOLDOROS-HALGIS_BONE_RING.description": "攻击牌对意图攻击的敌人造成50%额外伤害。",
-  "SOLDOROS-HALGIS_BONE_RING.flavor": "「男儿一怒，千军难挡！这戒指的威力比你想象的强大…… --卡坤」"
+  "SOLDOROS-HALGIS_BONE_RING.flavor": "「男儿一怒，千军难挡！这戒指的威力比你想象的强大…… --卡坤」",
+
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.title": "觉醒：魔剑·克拉丽斯",
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.description": "每场战斗开始时，将[gold]魔剑·克拉丽斯+[/gold]加入你的手牌。\n每当[gold]魔剑·克拉丽斯[/gold]被洗入[gold]牌库[/gold]时，\n将其置于顶部。",
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.flavor": "「克蕾雅之魂觉醒，与索德罗斯并肩踏入了另一境界。」"
 }

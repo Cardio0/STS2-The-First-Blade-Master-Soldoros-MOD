@@ -24,7 +24,12 @@ public static class DeathAnimPatch
             return;
 
         var corpseTexture = GD.Load<Texture2D>("res://Soldoros/images/character/soldoros_corpse.png");
-        if (corpseTexture != null)
-            sprite.Texture = corpseTexture;
+        if (corpseTexture == null)
+            return;
+
+        sprite.Texture = corpseTexture;
+        float xSign = sprite.Scale.X < 0 ? -1f : 1f;
+        sprite.Scale = new Vector2(xSign * 0.15f, 0.15f);
+        sprite.Position = new Vector2(-20f, -120f);
     }
 }

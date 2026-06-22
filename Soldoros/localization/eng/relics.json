@@ -29,5 +29,9 @@
 
   "SOLDOROS-HALGIS_BONE_RING.title": "Halgi's Bone Ring",
   "SOLDOROS-HALGIS_BONE_RING.description": "Attack cards deal 50% more damage\nto enemies that intend to attack.",
-  "SOLDOROS-HALGIS_BONE_RING.flavor": "\"One shot is all you need! Why strike twice or three times? Once is enough. - Cargon\""
+  "SOLDOROS-HALGIS_BONE_RING.flavor": "\"One shot is all you need! Why strike twice or three times? Once is enough. - Cargon\"",
+
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.title": "Awakened: Egosword Clararis",
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.description": "At the start of each combat, add [gold]Egosword Clararis+[/gold] to your hand.\nWhenever [gold]Egosword Clararis[/gold] is shuffled\ninto the [gold]Draw Pile[/gold], place it at the top.",
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.flavor": "\"Claire's spirit awakened, reaching a new realm alongside Soldoros.\""
 }

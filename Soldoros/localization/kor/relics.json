@@ -29,5 +29,9 @@
 
   "SOLDOROS-HALGIS_BONE_RING.title": "할기의 본링",
   "SOLDOROS-HALGIS_BONE_RING.description": "공격할 의도가 있는 적 상대로 사용하는\n공격 카드의 피해량이 50% 증가합니다.",
-  "SOLDOROS-HALGIS_BONE_RING.flavor": "\"인생 한 방! 뭐 있겠나! 어줍지 않게 두 번, 세 번 할 필요 있나. 오직 한 번이면 족한거야. - 카곤\""
+  "SOLDOROS-HALGIS_BONE_RING.flavor": "\"인생 한 방! 뭐 있겠나! 어줍지 않게 두 번, 세 번 할 필요 있나. 오직 한 번이면 족한거야. - 카곤\"",
+
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.title": "각성: 에고소드 클라리스",
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.description": "매 전투 시작 시, [gold]에고소드 클라리스+[/gold]를\n[gold]손[/gold]으로 가져옵니다.\n[gold]에고소드 클라리스[/gold]가 [gold]뽑을 카드 더미[/gold]에\n섞일 때마다, 가장 위쪽에 배치합니다.",
+  "SOLDOROS-AWAKENED_EGOSWORD_CLARARIS_RELIC.flavor": "\"클레어의 혼이 깨어나, 솔도로스와 함께 또 다른 경지에 이르렀다.\""
 }
