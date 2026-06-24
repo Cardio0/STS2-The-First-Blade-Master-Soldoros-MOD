@@ -8,8 +8,8 @@
         <DefaultItemExcludes>packages/**</DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
-        <Version>1.2.8</Version>
-        <InformationalVersion>1.2.8</InformationalVersion>
+        <Version>1.2.9</Version>
+        <InformationalVersion>1.2.9</InformationalVersion>
     </PropertyGroup>
 
     <PropertyGroup>

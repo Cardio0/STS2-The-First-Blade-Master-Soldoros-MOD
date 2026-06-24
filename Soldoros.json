@@ -3,7 +3,7 @@
   "name": "The First Blade Master Soldoros",
   "author": "Cardi0",
   "description": "Soldoros is a legendary Blade Master who is believed to be apt with thousands of weapons.\nThe story of his conquest of the tower.",
-  "version": "v1.2.8",
+  "version": "v1.2.9",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [{"id": "BaseLib", "min_version": "v3.3.1"}],

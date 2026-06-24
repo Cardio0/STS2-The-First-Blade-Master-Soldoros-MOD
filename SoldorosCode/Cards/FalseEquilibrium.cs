@@ -21,8 +21,6 @@ public sealed class FalseEquilibrium : SoldorosCard
         new BlockVar(5m, ValueProp.Move),
     };
 
-    public override bool GainsBlock => false;
-
     public FalseEquilibrium() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -31,7 +29,7 @@ public sealed class FalseEquilibrium : SoldorosCard
 
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        await CreatureCmd.GainBlock(cardPlay.Target, new BlockVar(1m, ValueProp.Unpowered), cardPlay);
+        await CreatureCmd.GainBlock(cardPlay.Target, 1m, ValueProp.Unpowered, null);
     }
 
     protected override void OnUpgrade()
