@@ -38,8 +38,17 @@ public sealed class FairAndSquare : SoldorosCard
         await PowerCmd.Apply<PlatingPower>(choiceContext, base.Owner.Creature, base.DynamicVars["PlatingPower"].BaseValue, base.Owner.Creature, this);
         foreach (Creature enemy in base.CombatState.HittableEnemies)
         {
+            decimal desired = base.DynamicVars["EnemyPlating"].BaseValue;
+            await PowerCmd.Apply<PlatingPower>(choiceContext, enemy, desired, base.Owner.Creature, this);
+            PlatingPower? pp = enemy.GetPower<PlatingPower>();
+            if (pp != null)
+            {
+                if (pp.Amount != (int)desired)
+                    await PowerCmd.ModifyAmount(choiceContext, pp, (int)desired - pp.Amount, base.Owner.Creature, this);
+                if (base.CombatState.Players.Count > 1)
+                    pp.DynamicVars["Decrement"].BaseValue = 1m;
+            }
             await CreatureCmd.GainBlock(enemy, base.DynamicVars.Block, cardPlay);
-            await PowerCmd.Apply<PlatingPower>(choiceContext, enemy, base.DynamicVars["EnemyPlating"].BaseValue, base.Owner.Creature, this);
         }
     }
 
