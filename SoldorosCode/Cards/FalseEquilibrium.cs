@@ -21,6 +21,8 @@ public sealed class FalseEquilibrium : SoldorosCard
         new BlockVar(5m, ValueProp.Move),
     };
 
+    public override bool GainsBlock => false;
+
     public FalseEquilibrium() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -20,7 +20,7 @@ public sealed class SentientBlade : SoldorosCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new BlockVar(6m, ValueProp.Move),
+        new BlockVar(6m, ValueProp.Move | ValueProp.Unpowered),
     };
 
     public override bool GainsBlock => false;
