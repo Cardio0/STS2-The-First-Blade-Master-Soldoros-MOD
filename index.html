@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>솔도로스 — Soldoros Mod</title>
+<style>
+:root{
+  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
+  --gold:#e3a838;--gold2:#f0d080;--text:#c9d1d9;--dim:#8b949e;
+  --attack:#c94040;--skill:#4080c9;--power:#9040c9;--token:#505060;
+  --basic:#888;--common:#c9d1d9;--uncommon:#6ab0ff;--rare:#f0c040;--ancient:#ff6060;
+  --starter:#e3a838;--boss:#c940c9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Malgun Gothic','맑은 고딕',sans-serif;min-height:100vh}
+
+/* ── 상단 바 ── */
+.topbar{background:#010409;border-bottom:1px solid #1c2128;padding:14px 40px;display:flex;align-items:center;gap:12px}
+.topbar-logo{font-size:1.1rem;font-weight:bold;color:var(--gold2);letter-spacing:2px}
+.topbar-sub{color:var(--dim);font-size:.8rem}
+
+.page{max-width:1000px;margin:0 auto;padding:32px 20px 80px}
+
+/* ── 캐릭터 프로필 ── */
+.char-profile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;display:flex;gap:24px;align-items:center;margin-bottom:28px}
+.char-img{width:140px;height:auto;object-fit:contain;image-rendering:pixelated}
+.char-info{flex:1}
+.char-name{font-size:1.6rem;font-weight:bold;color:var(--gold2);margin-bottom:6px}
+.char-desc{color:var(--dim);font-size:.88rem;line-height:1.6;margin-bottom:14px}
+.char-stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 20px;text-align:center;min-width:90px}
+.stat-label{font-size:.7rem;color:var(--dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.stat-val{font-size:1.4rem;font-weight:bold}
+.stat-val.hp{color:#c94040}.stat-val.energy{color:var(--gold)}
+
+/* ── 섹션 ── */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:20px;overflow:visible}
+.section-header{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;border-bottom:1px solid var(--border);border-radius:12px 12px 0 0}
+.section-title{font-size:1rem;font-weight:bold}
+.section-count{color:var(--dim);font-size:.82rem;margin-left:8px}
+.section-toggle{color:var(--dim);font-size:.8rem;transition:transform .2s}
+.section-toggle.open{transform:rotate(180deg)}
+.section-body{padding:20px 24px;border-radius:0 0 12px 12px}
+.section-body.hidden{display:none}
+
+/* ── 희귀도 그룹 ── */
+.rarity-group{margin-bottom:28px}
+.rarity-group:last-child{margin-bottom:0}
+.rarity-label{font-size:.72rem;font-weight:bold;letter-spacing:2px;padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:14px}
+.rl-Basic    {background:rgba(136,136,136,.15);color:var(--basic);border:1px solid rgba(136,136,136,.3)}
+.rl-Common   {background:rgba(201,209,217,.1);color:var(--common);border:1px solid rgba(201,209,217,.25)}
+.rl-Uncommon {background:rgba(106,176,255,.1);color:var(--uncommon);border:1px solid rgba(106,176,255,.25)}
+.rl-Rare     {background:rgba(240,192,64,.1);color:var(--rare);border:1px solid rgba(240,192,64,.25)}
+.rl-Ancient  {background:rgba(255,96,96,.1);color:var(--ancient);border:1px solid rgba(255,96,96,.25)}
+.rl-Token    {background:rgba(80,80,96,.15);color:#9090b0;border:1px solid rgba(80,80,96,.3)}
+
+/* ── 카드 그리드 ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:16px}
+
+/* ══════════════════════════════════
+   카드 프레임 (STS2 스타일)
+══════════════════════════════════ */
+.card-frame{
+  position:relative;cursor:pointer;
+  border-radius:10px;
+  overflow:visible; /* cost-orb·tooltip이 카드 밖으로 나올 수 있도록 */
+  transition:transform .18s,box-shadow .18s;
+  background:#0c0e12;
+  box-shadow:0 4px 14px rgba(0,0,0,.6);
+  border:2px solid var(--fc,#444);
+}
+/* 내부 영역만 라운드 클리핑 */
+.card-frame > .card-banner:first-of-type{border-radius:8px 8px 0 0}
+.card-desc-area{border-radius:0 0 8px 8px}
+.card-frame:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 14px 36px rgba(0,0,0,.7),0 0 20px var(--fc-glow,transparent)}
+
+/* 타입별 색상 변수 */
+.card-frame[data-type="Attack"]{
+  --fc:#7a1c1c;--fc2:#b83030;--fc-glow:rgba(184,48,48,.25);
+  --banner-bg:linear-gradient(180deg,#3a0e0e,#1e0808);
+  --desc-bg:linear-gradient(180deg,#180b0b,#120808);
+}
+.card-frame[data-type="Skill"]{
+  --fc:#1c3a7a;--fc2:#3060b8;--fc-glow:rgba(48,96,184,.25);
+  --banner-bg:linear-gradient(180deg,#0e1e3a,#081020);
+  --desc-bg:linear-gradient(180deg,#0b1220,#080e18);
+}
+.card-frame[data-type="Power"]{
+  --fc:#5a1c7a;--fc2:#8030b8;--fc-glow:rgba(128,48,184,.25);
+  --banner-bg:linear-gradient(180deg,#220e3a,#120820);
+  --desc-bg:linear-gradient(180deg,#160b20,#0e0818);
+}
+.card-frame[data-type="Token"]{
+  --fc:#3a3a50;--fc2:#5a5a80;--fc-glow:rgba(90,90,128,.15);
+  --banner-bg:linear-gradient(180deg,#181820,#101018);
+  --desc-bg:linear-gradient(180deg,#111118,#0d0d14);
+}
+
+/* 희귀도별 외곽 글로우 */
+.card-frame[data-rarity="Rare"]   {box-shadow:0 4px 14px rgba(0,0,0,.6),0 0 12px rgba(240,192,64,.15)}
+.card-frame[data-rarity="Rare"]:hover   {box-shadow:0 14px 36px rgba(0,0,0,.7),0 0 24px rgba(240,192,64,.3)}
+.card-frame[data-rarity="Ancient"]{box-shadow:0 4px 14px rgba(0,0,0,.6),0 0 12px rgba(255,80,80,.2)}
+.card-frame[data-rarity="Ancient"]:hover{box-shadow:0 14px 36px rgba(0,0,0,.7),0 0 28px rgba(255,80,80,.35)}
+
+/* ── 이름 배너 ── */
+.card-banner{
+  background:var(--banner-bg,linear-gradient(180deg,#2a2a2a,#1a1a1a));
+  border-bottom:1px solid var(--fc2,#555);
+  padding:6px 32px 5px 32px; /* 좌우 대칭 — 오브 공간만큼 오른쪽도 동일 여백 */
+  display:flex;align-items:center;justify-content:center;
+  min-height:30px;
+  position:relative;
+}
+.card-banner::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.4),transparent 30%,transparent 70%,rgba(0,0,0,.4));
+  pointer-events:none;
+}
+.card-name{
+  font-size:.64rem;font-weight:bold;color:#f0e8d0;
+  text-shadow:0 1px 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.8);
+  text-align:center;letter-spacing:.3px;line-height:1.2;
+  position:relative;z-index:1;
+}
+
+/* ── 에너지 오브 (솔도로스 에너지 레이어 스택) ── */
+.cost-wrap{
+  position:absolute;top:-17px;left:-17px;
+  width:34px;height:34px;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+}
+.energy-stack{
+  position:absolute;inset:0;
+}
+.energy-stack img{
+  position:absolute;top:0;left:0;
+  width:100%;height:100%;
+  object-fit:contain;
+}
+.cost-num{
+  position:relative;z-index:5;
+  font-size:.82rem;font-weight:900;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 6px rgba(0,0,0,.8);
+  line-height:1;
+  margin-top:1px;
+}
+
+/* ── 카드 일러스트 영역 ── */
+.card-art{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:#08080c;
+}
+.card-art img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+/* 일러스트 하단 페이드 */
+.card-art::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:28px;
+  background:linear-gradient(0deg,var(--fc,#111) 0%,transparent 100%);
+  opacity:.6;pointer-events:none;
+}
+/* 타입 배지 */
+.card-type-badge{
+  position:absolute;bottom:5px;left:50%;transform:translateX(-50%);
+  font-size:.58rem;padding:2px 8px;border-radius:2px;font-weight:bold;
+  background:rgba(0,0,0,.82);border:1px solid rgba(255,255,255,.12);
+  color:#d0ccc0;letter-spacing:.5px;white-space:nowrap;z-index:2;
+}
+
+/* ── 설명 영역 ── */
+.card-desc-area{
+  background:var(--desc-bg,linear-gradient(180deg,#141414,#0e0e0e));
+  border-top:1px solid var(--fc2,#444);
+  padding:7px 8px 9px;
+  font-size:.6rem;line-height:1.55;color:#c0b8a8;
+  min-height:54px;
+  position:relative;
+  text-align:center;
+}
+.card-desc-area .kw{color:var(--gold);font-weight:bold}
+.card-desc-area .blue{color:#80b0ff}
+
+/* 카드 하단 내부 장식선 */
+.card-frame::after{
+  content:'';position:absolute;
+  bottom:0;left:2px;right:2px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--fc2,#555),transparent);
+  border-radius:0 0 8px 8px;
+  opacity:.6;
+}
+
+/* ── 키워드 툴팁 ── */
+.kw{color:var(--gold);font-weight:bold;cursor:default;position:relative}
+.kw[data-tip]{cursor:help;border-bottom:1px dotted rgba(227,168,56,.5)}
+.kw[data-tip]:hover .kw-popup{display:block}
+.kw-popup{
+  display:none;position:absolute;bottom:calc(100% + 6px);left:50%;
+  transform:translateX(-50%);z-index:999;
+  background:#1c2128;border:1px solid #e3a838;border-radius:6px;
+  padding:8px 10px;min-width:180px;max-width:240px;
+  font-size:.72rem;line-height:1.5;color:#c9d1d9;font-weight:normal;
+  white-space:normal;pointer-events:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.8);
+}
+.kw-popup::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#e3a838;
+}
+.kw-popup-name{color:#e3a838;font-weight:bold;font-size:.75rem;margin-bottom:4px;display:block}
+/* 강화 하이라이트 */
+.upg{color:#5cdd5c;font-weight:bold}
+/* 강화 토글 버튼 */
+.upg-row{display:flex;justify-content:center;margin:12px 0 4px}
+.upg-btn{
+  background:transparent;border:1px solid var(--border);border-radius:6px;
+  color:var(--dim);font-size:.78rem;padding:4px 18px;cursor:pointer;
+  transition:all .15s;
+}
+.upg-btn:hover{border-color:var(--gold);color:var(--gold)}
+.upg-btn.active{background:#2a3a0e;border-color:#5cdd5c;color:#5cdd5c;font-weight:bold}
+
+/* ── 유물 ── */
+.relic-list{display:flex;flex-direction:column;gap:2px}
+.relic-row{display:flex;align-items:center;gap:16px;padding:12px 16px;border-radius:8px;cursor:pointer;transition:background .15s;border:1px solid transparent}
+.relic-row:hover{background:var(--surface2);border-color:var(--border)}
+.relic-icon{width:52px;height:52px;object-fit:contain;image-rendering:pixelated;flex-shrink:0}
+.relic-main{flex:1;min-width:0}
+.relic-name-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.relic-name{font-size:.9rem;font-weight:bold}
+.tier-badge{font-size:.65rem;padding:2px 7px;border-radius:3px;font-weight:bold}
+.tb-Starter {background:rgba(227,168,56,.2);color:var(--gold);border:1px solid rgba(227,168,56,.4)}
+.tb-Boss    {background:rgba(201,64,201,.2);color:#e080e0;border:1px solid rgba(201,64,201,.4)}
+.tb-Common  {background:rgba(201,209,217,.1);color:var(--common);border:1px solid rgba(201,209,217,.25)}
+.tb-Uncommon{background:rgba(106,176,255,.1);color:var(--uncommon);border:1px solid rgba(106,176,255,.25)}
+.tb-Rare    {background:rgba(240,192,64,.1);color:var(--rare);border:1px solid rgba(240,192,64,.25)}
+.tb-Ancient {background:rgba(255,96,96,.1);color:var(--ancient);border:1px solid rgba(255,96,96,.3)}
+.relic-desc{font-size:.78rem;color:var(--dim);line-height:1.5}
+.relic-desc .kw{color:var(--gold)}
+
+/* ── 포션 ── */
+.potion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.potion-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .15s,transform .15s}
+.potion-row:hover{border-color:var(--gold);transform:translateY(-1px)}
+.potion-icon{width:52px;height:52px;object-fit:contain;image-rendering:pixelated}
+.potion-name{font-size:.88rem;font-weight:bold;margin-bottom:4px}
+.potion-desc{font-size:.75rem;color:var(--dim);line-height:1.4}
+.potion-desc .kw{color:var(--gold)}
+
+/* ── NPC 대사 ── */
+.npc-accordion{display:flex;flex-direction:column;gap:4px}
+.npc-item{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.npc-header{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--surface2);transition:background .15s}
+.npc-header:hover{background:#2a2f36}
+.npc-header-name{font-size:.9rem;font-weight:bold}
+.npc-conv-count{font-size:.75rem;color:var(--dim)}
+.npc-toggle{color:var(--dim);transition:transform .2s}
+.npc-toggle.open{transform:rotate(180deg)}
+.npc-body{display:none;padding:16px;background:var(--surface);border-top:1px solid var(--border)}
+.npc-body.open{display:block}
+.conv-block{margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:16px}
+.conv-block:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
+.conv-num{font-size:.68rem;color:var(--dim);margin-bottom:8px;letter-spacing:1px}
+.chat-bubble{margin-bottom:8px;max-width:85%}
+.chat-bubble.ancient{margin-right:auto}
+.chat-bubble.char{margin-left:auto}
+.bubble-speaker{font-size:.65rem;font-weight:bold;margin-bottom:3px;letter-spacing:.5px}
+.chat-bubble.ancient .bubble-speaker{color:var(--dim)}
+.chat-bubble.char .bubble-speaker{color:var(--gold);text-align:right}
+.bubble-text{padding:8px 12px;border-radius:8px;font-size:.82rem;line-height:1.5}
+.chat-bubble.ancient .bubble-text{background:var(--surface2);border:1px solid var(--border);border-radius:0 8px 8px 8px;color:var(--text)}
+.chat-bubble.char .bubble-text{background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);border-radius:8px 0 8px 8px;color:#e8dcc0;text-align:right}
+
+/* ── 모달 ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;z-index:1}
+.modal-close:hover{color:var(--text)}
+
+/* 카드 모달 */
+.cmodal-top{padding:28px 28px 0}
+.cmodal-card-wrap{display:flex;justify-content:center;margin-bottom:24px}
+.cmodal-card{
+  width:200px;border-radius:10px;overflow:visible;
+  border:3px solid var(--fc,#444);position:relative;background:#0a0c10;
+  box-shadow:0 8px 24px rgba(0,0,0,.7);
+}
+/* cost-orb·tooltip이 카드 테두리 밖으로 나오도록 내부 요소에 모서리 처리 */
+.cmodal-card > .card-banner:first-of-type{border-radius:7px 7px 0 0}
+.cmodal-card > .card-desc-area{border-radius:0 0 7px 7px}
+.cmodal-card[data-type="Attack"]{--fc:#7a1c1c;--fc2:#b83030;--banner-bg:linear-gradient(180deg,#3a0e0e,#1e0808);--desc-bg:linear-gradient(180deg,#180b0b,#120808)}
+.cmodal-card[data-type="Skill"]  {--fc:#1c3a7a;--fc2:#3060b8;--banner-bg:linear-gradient(180deg,#0e1e3a,#081020);--desc-bg:linear-gradient(180deg,#0b1220,#080e18)}
+.cmodal-card[data-type="Power"]  {--fc:#5a1c7a;--fc2:#8030b8;--banner-bg:linear-gradient(180deg,#220e3a,#120820);--desc-bg:linear-gradient(180deg,#160b20,#0e0818)}
+.cmodal-card[data-type="Token"]  {--fc:#3a3a50;--fc2:#5a5a80;--banner-bg:linear-gradient(180deg,#181820,#101018);--desc-bg:linear-gradient(180deg,#111118,#0d0d14)}
+.cmodal-card .cost-wrap{width:42px;height:42px;top:-21px;left:-21px}
+.cmodal-card .cost-num{font-size:1rem}
+.cmodal-card .card-name{font-size:.62rem;padding:6px 4px 5px 4px}
+.cmodal-card .card-desc-area{font-size:.7rem;min-height:70px;padding:10px;text-align:center}
+.cmodal-info{padding:0 28px 28px}
+.cmodal-name{font-size:1.2rem;font-weight:bold;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.cmodal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;font-size:.78rem;color:var(--dim)}
+.cmodal-meta-item{display:flex;align-items:center;gap:4px}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:var(--dim)}
+.cmodal-desc-label{font-size:.72rem;color:var(--dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+.cmodal-desc{font-size:.88rem;line-height:1.7;white-space:pre-line}
+.cmodal-desc .kw{color:var(--gold)}
+
+/* 유물/포션 모달 */
+.imodal-body{padding:32px;text-align:center}
+.imodal-icon{width:90px;height:90px;object-fit:contain;image-rendering:pixelated;margin-bottom:16px}
+.imodal-name{font-size:1.2rem;font-weight:bold;margin-bottom:8px}
+.imodal-meta{color:var(--dim);font-size:.8rem;margin-bottom:20px}
+.imodal-desc{font-size:.88rem;line-height:1.8;white-space:pre-line;text-align:left;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px}
+.imodal-desc .kw{color:var(--gold)}
+.imodal-flavor{font-size:.78rem;color:var(--dim);font-style:italic;line-height:1.6}
+
+@media(max-width:600px){
+  .char-profile{flex-direction:column;text-align:center}
+  .char-img{width:100px}
+  .page{padding:16px 12px 60px}
+  .section-body{padding:14px}
+  .card-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+  .cmodal-card{width:160px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">⚔ Soldoros Mod</div>
+  <div class="topbar-sub">Slay the Spire 2 · 커스텀 캐릭터</div>
+</div>
+
+<div class="page">
+
+  <!-- 캐릭터 프로필 -->
+  <div class="char-profile">
+    <img class="char-img" src="char.png" alt="솔도로스">
+    <div class="char-info">
+      <div class="char-name">퍼스트 웨펀마스터 솔도로스</div>
+      <div class="char-desc">수천 수만의 무기를 다룰 수 있다고 하는 전설의 검사이자 웨펀마스터.<br>오로지 검술만을 연마하고 강한 자와의 대결에만 관심을 보였다고 한다.</div>
+      <div class="char-stats">
+        <div class="stat-box"><div class="stat-label">체력</div><div class="stat-val hp">77</div></div>
+        <div class="stat-box"><div class="stat-label">에너지</div><div class="stat-val energy">3</div></div>
+        <div class="stat-box"><div class="stat-label">카드</div><div class="stat-val" style="color:var(--uncommon)">57</div></div>
+        <div class="stat-box"><div class="stat-label">유물</div><div class="stat-val" style="color:var(--rare)">9</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 시작 덱 -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div><span class="section-title">시작 덱</span><span class="section-count">(10장)</span></div>
+      <span class="section-toggle open">▲</span>
+    </div>
+    <div class="section-body" id="starting-grid-wrap">
+      <div class="card-grid" id="starting-grid"></div>
+    </div>
+  </div>
+
+  <!-- 모든 카드 -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div><span class="section-title">모든 솔도로스 카드</span><span class="section-count" id="all-card-count"></span></div>
+      <span class="section-toggle open">▲</span>
+    </div>
+    <div class="section-body" id="all-cards-body"></div>
+  </div>
+
+  <!-- 유물 -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div><span class="section-title">솔도로스 유물</span><span class="section-count">(9개)</span></div>
+      <span class="section-toggle open">▲</span>
+    </div>
+    <div class="section-body">
+      <div class="relic-list" id="relic-list"></div>
+    </div>
+  </div>
+
+  <!-- 포션 -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div><span class="section-title">솔도로스 포션</span><span class="section-count">(3개)</span></div>
+      <span class="section-toggle open">▲</span>
+    </div>
+    <div class="section-body">
+      <div class="potion-grid" id="potion-grid"></div>
+    </div>
+  </div>
+
+  <!-- NPC 대사 -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div><span class="section-title">NPC 대사</span><span class="section-count">(9명)</span></div>
+      <span class="section-toggle open">▲</span>
+    </div>
+    <div class="section-body">
+      <div class="npc-accordion" id="npc-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 카드 모달 -->
+<div class="modal-bg" id="card-modal" onclick="closeModalBg(event,'card-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('card-modal')">✕</button>
+    <div class="cmodal-top">
+      <div class="upg-row">
+        <button class="upg-btn" id="cm-upg-btn" onclick="toggleUpgrade()">강화 버전 클릭</button>
+      </div>
+      <div class="cmodal-card-wrap">
+        <div class="cmodal-card" id="cm-card-frame" data-type="">
+          <div class="cost-wrap" id="cm-cost-wrap">
+            <div class="energy-stack" id="cm-energy-stack"></div>
+            <span class="cost-num" id="cm-cost-num"></span>
+          </div>
+          <div class="card-banner"><span class="card-name" id="cm-title"></span></div>
+          <div class="card-art">
+            <img id="cm-img" src="" alt="">
+            <div class="card-type-badge" id="cm-type-badge"></div>
+          </div>
+          <div class="card-desc-area" id="cm-desc-card"></div>
+        </div>
+      </div>
+    </div>
+    <div class="cmodal-info">
+      <div class="cmodal-name" id="cm-name"></div>
+      <div class="cmodal-meta" id="cm-meta"></div>
+      <div class="cmodal-desc-label">효과</div>
+      <div class="cmodal-desc" id="cm-desc-text"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 유물/포션 모달 -->
+<div class="modal-bg" id="item-modal" onclick="closeModalBg(event,'item-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('item-modal')">✕</button>
+    <div class="imodal-body">
+      <img class="imodal-icon" id="im-icon" src="" alt="">
+      <div class="imodal-name" id="im-name"></div>
+      <div class="imodal-meta" id="im-meta"></div>
+      <div class="imodal-desc" id="im-desc"></div>
+      <div class="imodal-flavor" id="im-flavor"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CARDS          = [{"key": "strike_soldoros", "name": "타격", "cost": 1, "type": "Attack", "rarity": "Basic", "desc": "피해를 [gold]6[/gold] 줍니다.", "img": "Soldoros/images/card_portraits/strike_soldoros.png"}, {"key": "defend_soldoros", "name": "수비", "cost": 1, "type": "Skill", "rarity": "Basic", "desc": "[gold]방어도[/gold]를 [gold]5[/gold] 얻습니다.", "img": "Soldoros/images/card_portraits/defend_soldoros.png"}, {"key": "ashe_fork", "name": "에쉔 포크", "cost": 0, "type": "Attack", "rarity": "Basic", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]3[/gold] 줍니다.", "img": "Soldoros/images/card_portraits/ashe_fork.png"}, {"key": "upward_slash", "name": "어퍼 슬래시", "cost": 1, "type": "Attack", "rarity": "Basic", "desc": "피해를 [gold]3[/gold] 줍니다.\n[gold]취약[/gold]을 1 부여합니다.", "img": "Soldoros/images/card_portraits/upward_slash.png"}, {"key": "backstep", "name": "백스텝", "cost": 0, "type": "Skill", "rarity": "Common", "desc": "이번 턴 동안 [gold]민첩[/gold]을 [gold]4[/gold] 얻습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/backstep.png"}, {"key": "backstep_cutter", "name": "백스텝 커터", "cost": 1, "type": "Attack", "rarity": "Common", "desc": "[gold]방어도[/gold]를 [gold]10[/gold] 얻습니다.\n피해를 [gold]10[/gold] 줍니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.", "img": "Soldoros/images/card_portraits/backstep_cutter.png"}, {"key": "draw_sword", "name": "발도", "cost": 1, "type": "Attack", "rarity": "Common", "desc": "모든 적에게 피해를 [gold]3[/gold]만큼\n2번 주고 [gold]취약[/gold]을 1 부여합니다.", "img": "Soldoros/images/card_portraits/draw_sword.png"}, {"key": "drive_slash", "name": "단공참", "cost": 0, "type": "Skill", "rarity": "Common", "desc": "[gold]에너지[/gold]를 1 얻습니다. 카드를 1장 뽑습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/drive_slash.png"}, {"key": "endless_training", "name": "끝없는 수련", "cost": 1, "type": "Skill", "rarity": "Common", "desc": "[gold]방어도[/gold]를 [gold]4[/gold] 얻습니다.\n다음 [gold]2[/gold]턴 동안 턴 시작 시,\n[gold]힘[/gold]을 1 얻습니다.", "img": "Soldoros/images/card_portraits/endless_training.png"}, {"key": "false_equilibrium", "name": "기울어진 균형", "cost": 0, "type": "Skill", "rarity": "Common", "desc": "[gold]방어도[/gold]를 [gold]5[/gold] 얻습니다.\n대상 적이 [gold]방어도[/gold]를 1 얻습니다.", "img": "Soldoros/images/card_portraits/false_equilibrium.png"}, {"key": "flip_side_counter", "name": "이면 뒤집기", "cost": 0, "type": "Attack", "rarity": "Common", "desc": "피해를 [gold]3[/gold] 줍니다.\n적이 공격할 의도가 있다면,\n[gold]취약[/gold]을 [gold]1[/gold] 부여합니다.", "img": "Soldoros/images/card_portraits/flip_side_counter.png"}, {"key": "flowing_stance", "name": "류심", "cost": 2, "type": "Skill", "rarity": "Common", "desc": "[gold]류심 승, 쾌, 충[/gold]을 [gold]손[/gold]으로 가져옵니다.", "img": "Soldoros/images/card_portraits/flowing_stance.png"}, {"key": "measured_strike", "name": "절제된 공격", "cost": 1, "type": "Attack", "rarity": "Common", "desc": "피해를 [gold]6[/gold] 줍니다.\n무작위 [gold]류심[/gold] 공격 카드를\n1장 [gold]손[/gold]으로 가져옵니다.", "img": "Soldoros/images/card_portraits/measured_strike.png"}, {"key": "secret_sword_art", "name": "리 귀검술", "cost": 1, "type": "Attack", "rarity": "Common", "desc": "피해를 [gold]3[/gold]만큼 3번 줍니다.", "img": "Soldoros/images/card_portraits/secret_sword_art.png"}, {"key": "sheath_guard", "name": "검집 막기", "cost": 1, "type": "Skill", "rarity": "Common", "desc": "[gold]방어도[/gold]를 [gold]12[/gold] 얻습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.", "img": "Soldoros/images/card_portraits/sheath_guard.png"}, {"key": "thrust", "name": "쓰러스트", "cost": 1, "type": "Attack", "rarity": "Common", "desc": "피해를 [gold]9[/gold] 줍니다.\n대상 적이 [gold]방어도[/gold]를 보유했다면,\n3번 적중합니다.", "img": "Soldoros/images/card_portraits/thrust.png"}, {"key": "aerial_chain_slash", "name": "공중 연속 베기", "cost": -1, "type": "Attack", "rarity": "Uncommon", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]6[/gold]만큼 X번 줍니다.\n[gold]약화[/gold]를 X 부여합니다.", "img": "Soldoros/images/card_portraits/aerial_chain_slash.png"}, {"key": "armament", "name": "무장", "cost": 0, "type": "Skill", "rarity": "Uncommon", "desc": "보유한 유물 수만큼\n[gold]방어도[/gold]를 얻습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/armament.png"}, {"key": "auto_guard", "name": "오토 가드", "cost": 2, "type": "Skill", "rarity": "Uncommon", "desc": "[gold]방어도[/gold]를 [gold]10[/gold] 얻습니다.\n이번 턴에 [gold]취약[/gold] 상태 적에게서\n받는 피해량이 50% 감소합니다.", "img": "Soldoros/images/card_portraits/auto_guard.png"}, {"key": "blade_communion", "name": "검의 대화", "cost": 1, "type": "Power", "rarity": "Uncommon", "desc": "[gold]힘[/gold]을 [gold]3[/gold] 얻습니다.\n모든 적이 [gold]힘[/gold]을 1 얻습니다.", "img": "Soldoros/images/card_portraits/blade_communion.png"}, {"key": "brick_break", "name": "깨뜨리기", "cost": 0, "type": "Skill", "rarity": "Uncommon", "desc": "대상 적의 모든 [gold]인공물[/gold]과\n[gold]방어도[/gold]를 제거합니다.\n[gold]약화[/gold]를 [gold]2[/gold] 부여합니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/brick_break.png"}, {"key": "charge_burst", "name": "차지 버스트", "cost": 1, "type": "Attack", "rarity": "Uncommon", "desc": "피해를 [gold]3[/gold]만큼 2번 줍니다.\n적이 보유한 [gold]취약[/gold]이 2배로 증가합니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/charge_burst.png"}, {"key": "charge_crash", "name": "차지 크래시", "cost": 1, "type": "Attack", "rarity": "Uncommon", "desc": "피해를 [gold]4[/gold] 줍니다.\n[gold]취약[/gold]을 2 부여합니다.", "img": "Soldoros/images/card_portraits/charge_crash.png"}, {"key": "claris_call", "name": "클레어...", "cost": 1, "type": "Skill", "rarity": "Uncommon", "desc": "어디에 있든 [gold]에고소드 클라리스[/gold]를\n[gold]손[/gold]으로 가져옵니다.\n[gold]방어도[/gold]를 [gold]8[/gold] 얻습니다.", "img": "Soldoros/images/card_portraits/claris_call.png"}, {"key": "decisive_strike", "name": "일격", "cost": 2, "type": "Attack", "rarity": "Uncommon", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]11[/gold] 줍니다.", "img": "Soldoros/images/card_portraits/decisive_strike.png"}, {"key": "deft_grip", "name": "신기의 손놀림", "cost": 0, "type": "Skill", "rarity": "Uncommon", "desc": "카드를 1장 뽑습니다.\n무색 공격 카드를 뽑았다면\n이번 전투 동안 그 카드의 피해량이\n[gold]1[/gold] 증가합니다.", "img": "Soldoros/images/card_portraits/deft_grip.png"}, {"key": "egosword_clararis", "name": "에고소드 클라리스", "cost": 1, "type": "Attack", "rarity": "Token", "desc": "[gold]유일[/gold].\n피해를 [gold]6[/gold] 줍니다.\n이 카드가 [gold]뽑을 카드 더미[/gold]에서\n[gold]손[/gold]으로 이동할 때마다,\n모든 적에게\n피해를 [gold]6[/gold] 줍니다.", "img": "Soldoros/images/card_portraits/egosword_clararis.png"}, {"key": "fair_and_square", "name": "정정당당", "cost": 1, "type": "Power", "rarity": "Uncommon", "desc": "[gold]판금[/gold]을 [gold]5[/gold] 얻습니다.\n모든 적이 [gold]방어도[/gold]를 [gold]5[/gold] 얻습니다.\n모든 적이 [gold]판금[/gold]을 [gold]4[/gold] 얻습니다.\n[gold]선천성[/gold]", "img": "Soldoros/images/card_portraits/fair_and_square.png"}, {"key": "flowing_stance_force", "name": "류심 강", "cost": 1, "type": "Power", "rarity": "Uncommon", "desc": "무색 공격 카드의 피해량이\n[gold]3[/gold] 증가합니다.", "img": "Soldoros/images/card_portraits/flowing_stance_force.png"}, {"key": "flowing_stance_zenith", "name": "류심 극", "cost": 3, "type": "Skill", "rarity": "Uncommon", "desc": "[gold]소멸된 카드 더미[/gold]에 있는 모든\n[gold]류심[/gold] 공격 카드를 [gold]손[/gold]으로 가져옵니다.", "img": "Soldoros/images/card_portraits/flowing_stance_zenith.png"}, {"key": "grandmaster_at_arms", "name": "무기의 달인", "cost": 1, "type": "Skill", "rarity": "Uncommon", "desc": "다른 모든 플레이어가 카드를 2장 뽑습니다.\n다른 모든 플레이어가 [gold]에너지[/gold]를 얻습니다.\n자신의 [gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/grandmaster_at_arms.png"}, {"key": "illusion_sword_dance", "name": "환영검무", "cost": -1, "type": "Attack", "rarity": "Uncommon", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]5[/gold]만큼 X번 줍니다.", "img": "Soldoros/images/card_portraits/illusion_sword_dance.png"}, {"key": "overdrive", "name": "오버드라이브", "cost": 0, "type": "Skill", "rarity": "Uncommon", "desc": "체력을 [gold]3[/gold] 잃습니다.\n대상 적이 보유한 [gold]취약[/gold]이\n[gold]2[/gold]배로 증가합니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/overdrive.png"}, {"key": "raging_dragon_slash", "name": "맹룡단공참", "cost": 1, "type": "Skill", "rarity": "Uncommon", "desc": "카드를 4장 뽑습니다.\n[gold]손[/gold]에 있는 카드 [gold]2[/gold]장을\n[gold]뽑을 카드 더미[/gold]에 섞어 넣습니다.", "img": "Soldoros/images/card_portraits/raging_dragon_slash.png"}, {"key": "rapid_weapon_switch", "name": "신속한 무기 교체", "cost": 0, "type": "Power", "rarity": "Uncommon", "desc": "내 턴 시작 시, 카드를 1장 뽑고\n카드 1장을 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.", "img": "Soldoros/images/card_portraits/rapid_weapon_switch.png"}, {"key": "sentient_blade", "name": "자아를 가진 검", "cost": 1, "type": "Power", "rarity": "Uncommon", "desc": "[gold]에고소드 클라리스[/gold]를 뽑을 때마다,\n[gold]방어도[/gold]를 [gold]6[/gold] 얻습니다.", "img": "Soldoros/images/card_portraits/sentient_blade.png"}, {"key": "sever", "name": "절단", "cost": 1, "type": "Attack", "rarity": "Uncommon", "desc": "모든 적에게 피해를 [gold]3[/gold] 줍니다.\n이번 턴 동안 모든 적이 [gold]힘[/gold]을 [gold]3[/gold] 잃습니다.\n[gold]휘발성[/gold]", "img": "Soldoros/images/card_portraits/sever.png"}, {"key": "sheathe", "name": "납도", "cost": 0, "type": "Skill", "rarity": "Uncommon", "desc": "카드를 2장 뽑습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨위에 놓습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/sheathe.png"}, {"key": "sword_qi_master", "name": "검기상인", "cost": 1, "type": "Power", "rarity": "Uncommon", "desc": "[gold]에고소드 클라리스[/gold]가 막히지 않은\n피해를 줄 때마다, [gold]약화[/gold]를 2 부여합니다.", "img": "Soldoros/images/card_portraits/sword_qi_master.png"}, {"key": "weapon_wielders_zenith", "name": "무기의 극의", "cost": 1, "type": "Skill", "rarity": "Uncommon", "desc": "이번 턴에 무색 카드를 사용할 때마다,\n이번 턴 동안 [gold]힘[/gold]을 2 얻습니다.", "img": "Soldoros/images/card_portraits/weapon_wielders_zenith.png"}, {"key": "conversion", "name": "컨버전", "cost": 1, "type": "Power", "rarity": "Rare", "desc": "공격 카드로 적의 [gold]방어도[/gold]를\n제거한 만큼 [gold]방어도[/gold]를 얻습니다.", "img": "Soldoros/images/card_portraits/conversion.png"}, {"key": "despair_tower_visitor", "name": "절망의 탑에서 온 자", "cost": 2, "type": "Power", "rarity": "Rare", "desc": "다른 플레이어가 [gold]취약[/gold]을 부여할 때마다,\n[gold]힘[/gold]을 1 얻습니다.", "img": "Soldoros/images/card_portraits/despair_tower_visitor.png"}, {"key": "flowing_stance_neo", "name": "류심 진", "cost": 1, "type": "Power", "rarity": "Rare", "desc": "적을 무색 카드로 공격할 때마다,\n대상 적이 이번 턴 동안 [gold]힘[/gold]을 1 잃습니다.", "img": "Soldoros/images/card_portraits/flowing_stance_neo.png"}, {"key": "hypervigilance", "name": "극한의 경지", "cost": 1, "type": "Power", "rarity": "Rare", "desc": "[gold]에고소드 클라리스[/gold]가 막히지 않은\n피해를 줄 때마다, [gold]힘[/gold]을 1 얻습니다.", "img": "Soldoros/images/card_portraits/hypervigilance.png"}, {"key": "indomitable_spirit", "name": "불굴의 의지", "cost": 2, "type": "Skill", "rarity": "Rare", "desc": "이번 턴 동안 잃는 체력이\n[gold]10[/gold]을 넘을 수 없습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/indomitable_spirit.png"}, {"key": "lightning_draw_sword", "name": "극초발도", "cost": 2, "type": "Attack", "rarity": "Rare", "desc": "모든 적에게 피해를 [gold]10[/gold] 줍니다.\n보유한 유물 수만큼 피해량이 증가합니다.", "img": "Soldoros/images/card_portraits/lightning_draw_sword.png"}, {"key": "omnislay_minds_sword", "name": "극 귀검술: 심검", "cost": 1, "type": "Attack", "rarity": "Rare", "desc": "피해를 [gold]6[/gold] 줍니다.\n손에 있는 모든 카드를\n[gold]뽑을 카드 더미[/gold]에 섞어 넣습니다.\n다음 턴에, 공격 카드의 피해량이 2배가 됩니다.", "img": "Soldoros/images/card_portraits/omnislay_minds_sword.png"}, {"key": "omnislay_shooting_star", "name": "극 귀검술: 유성락", "cost": 1, "type": "Attack", "rarity": "Rare", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]8[/gold] 줍니다.\n막히지 않은 피해량만큼 [gold]방어도[/gold]를 얻습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/omnislay_shooting_star.png"}, {"key": "rear_attack", "name": "백어택", "cost": 2, "type": "Power", "rarity": "Rare", "desc": "[gold]방어도[/gold]를 보유한 적에게 사용하는\n공격 카드의 피해량이 2배로 증가합니다.", "img": "Soldoros/images/card_portraits/rear_attack.png"}, {"key": "telekinetic_swords", "name": "이기어검술", "cost": 1, "type": "Skill", "rarity": "Rare", "desc": "이번 턴에 공격 카드를 사용할 때마다,\n무작위 무색 카드를 1장 [gold]손[/gold]으로 가져옵니다.\n이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/telekinetic_swords.png"}, {"key": "ultimate_blade_ethereal_slash", "name": "극 발검술: 무형참", "cost": 1, "type": "Attack", "rarity": "Rare", "desc": "피해를 [gold]10[/gold] 줍니다.\n대상 적이 [gold]방어도[/gold]를 보유했다면,\n4번 적중합니다.", "img": "Soldoros/images/card_portraits/ultimate_blade_ethereal_slash.png"}, {"key": "ultimate_blade_lightning", "name": "극 발검술: 섬단", "cost": 1, "type": "Attack", "rarity": "Rare", "desc": "피해를 [gold]10[/gold] 줍니다.\n이번 전투 동안 사용한 무색 카드 수만큼\n피해량이 증가합니다.", "img": "Soldoros/images/card_portraits/ultimate_blade_lightning.png"}, {"key": "ultimate_slay_iron_strike", "name": "극 귀검술: 참철식", "cost": 1, "type": "Skill", "rarity": "Rare", "desc": "이번 턴 동안 막히지 않은\n공격 피해를 줄 때마다,\n[gold]취약[/gold]을 1 부여합니다.\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/ultimate_slay_iron_strike.png"}, {"key": "ultimate_slay_tempest", "name": "극 귀검술: 폭풍식", "cost": 3, "type": "Attack", "rarity": "Rare", "desc": "피해를 [gold]5[/gold] 줍니다.\n이번 전투 동안 사용한 무색 카드 수만큼\n반복합니다.", "img": "Soldoros/images/card_portraits/ultimate_slay_tempest.png"}, {"key": "pentastrike", "name": "천제극섬", "cost": 2, "type": "Attack", "rarity": "Ancient", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]5[/gold]만큼 5번 줍니다.", "img": "Soldoros/images/card_portraits/pentastrike.png"}, {"key": "state_of_incorporeity", "name": "무형지경", "cost": 2, "type": "Power", "rarity": "Ancient", "desc": "[gold]류심[/gold] 공격 카드를 사용할 때마다,\n[gold]에너지[/gold]를 얻습니다.", "img": "Soldoros/images/card_portraits/state_of_incorporeity.png"}, {"key": "flowing_stance_rise", "name": "류심 승", "cost": 0, "type": "Attack", "rarity": "Token", "desc": "피해를 [gold]3[/gold] 줍니다.\n[gold]취약[/gold]을 1 부여합니다.\n[gold]휘발성[/gold]\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/flowing_stance_rise.png"}, {"key": "flowing_stance_swift", "name": "류심 쾌", "cost": 0, "type": "Attack", "rarity": "Token", "desc": "피해를 [gold]3[/gold]만큼 2번 줍니다.\n[gold]휘발성[/gold]\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/flowing_stance_swift.png"}, {"key": "flowing_stance_clash", "name": "류심 충", "cost": 0, "type": "Attack", "rarity": "Token", "desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]3[/gold] 줍니다.\n[gold]휘발성[/gold]\n[gold]소멸[/gold]", "img": "Soldoros/images/card_portraits/flowing_stance_clash.png"}];
+const CARD_UPGRADES  = {"strike_soldoros": {"desc": "피해를 [gold][upg]9[/upg][/gold] 줍니다.", "cost": null}, "defend_soldoros": {"desc": "[gold]방어도[/gold]를 [gold][upg]8[/upg][/gold] 얻습니다.", "cost": null}, "ashe_fork": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold][upg]5[/upg][/gold] 줍니다.", "cost": null}, "upward_slash": {"desc": "피해를 [gold]3[/gold] 줍니다.\n[gold]취약[/gold]을 1 부여합니다.", "cost": 0}, "backstep": {"desc": "이번 턴 동안 [gold]민첩[/gold]을 [gold][upg]5[/upg][/gold] 얻습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n[gold]소멸[/gold]", "cost": null}, "backstep_cutter": {"desc": "[gold]방어도[/gold]를 [gold][upg]12[/upg][/gold] 얻습니다.\n피해를 [gold][upg]12[/upg][/gold] 줍니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.", "cost": null}, "draw_sword": {"desc": "모든 적에게 피해를 [gold][upg]5[/upg][/gold]만큼\n2번 주고 [gold]취약[/gold]을 1 부여합니다.", "cost": null}, "drive_slash": {"desc": "[gold]에너지[/gold]를 1 얻습니다. 카드를 1장 뽑습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n[gold]소멸[/gold]\n[gold]보존[/gold]", "cost": null}, "endless_training": {"desc": "[gold]방어도[/gold]를 [gold][upg]7[/upg][/gold] 얻습니다.\n다음 [gold]2[/gold]턴 동안 턴 시작 시,\n[gold]힘[/gold]을 1 얻습니다.", "cost": null}, "false_equilibrium": {"desc": "[gold]방어도[/gold]를 [gold][upg]8[/upg][/gold] 얻습니다.\n대상 적이 [gold]방어도[/gold]를 1 얻습니다.", "cost": null}, "flip_side_counter": {"desc": "피해를 [gold]3[/gold] 줍니다.\n적이 공격할 의도가 있다면,\n[gold]취약[/gold]을 [gold][upg]2[/upg][/gold] 부여합니다.", "cost": null}, "flowing_stance": {"desc": "[gold][upg]류심 승, 쾌, 충+[/upg][/gold]을 [gold]손[/gold]으로 가져옵니다.", "cost": null}, "measured_strike": {"desc": "피해를 [gold][upg]9[/upg][/gold] 줍니다.\n무작위 [gold]류심[/gold] 공격 카드를\n1장 [gold]손[/gold]으로 가져옵니다.", "cost": null}, "secret_sword_art": {"desc": "피해를 [gold][upg]4[/upg][/gold]만큼 3번 줍니다.", "cost": null}, "sheath_guard": {"desc": "[gold]방어도[/gold]를 [gold][upg]15[/upg][/gold] 얻습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.", "cost": null}, "thrust": {"desc": "피해를 [gold][upg]11[/upg][/gold] 줍니다.\n대상 적이 [gold]방어도[/gold]를 보유했다면,\n3번 적중합니다.", "cost": null}, "aerial_chain_slash": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]6[/gold]만큼 [upg]X+1[/upg]번 줍니다.\n[gold]약화[/gold]를 [upg]X+1[/upg] 부여합니다.", "cost": null}, "armament": {"desc": "보유한 유물 수만큼\n[gold]방어도[/gold]를 얻습니다.\n[gold]소멸[/gold]\n[gold]선천성[/gold]", "cost": null}, "auto_guard": {"desc": "[gold]방어도[/gold]를 [gold][upg]14[/upg][/gold] 얻습니다.\n이번 턴에 [gold]취약[/gold] 상태 적에게서\n받는 피해량이 50% 감소합니다.", "cost": null}, "blade_communion": {"desc": "[gold]힘[/gold]을 [gold][upg]4[/upg][/gold] 얻습니다.\n모든 적이 [gold]힘[/gold]을 1 얻습니다.", "cost": null}, "brick_break": {"desc": "대상 적의 모든 [gold]인공물[/gold]과\n[gold]방어도[/gold]를 제거합니다.\n[gold]약화[/gold]를 [gold][upg]3[/upg][/gold] 부여합니다.\n[gold]소멸[/gold]", "cost": null}, "charge_burst": {"desc": "피해를 [gold][upg]5[/upg][/gold]만큼 2번 줍니다.\n적이 보유한 [gold]취약[/gold]이 2배로 증가합니다.\n[gold]소멸[/gold]", "cost": null}, "charge_crash": {"desc": "피해를 [gold][upg]8[/upg][/gold] 줍니다.\n[gold]취약[/gold]을 2 부여합니다.", "cost": null}, "claris_call": {"desc": "어디에 있든 [gold]에고소드 클라리스[/gold]를\n[gold]손[/gold]으로 가져옵니다.\n[gold]방어도[/gold]를 [gold][upg]12[/upg][/gold] 얻습니다.", "cost": null}, "decisive_strike": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold][upg]13[/upg][/gold] 줍니다.", "cost": null}, "deft_grip": {"desc": "카드를 1장 뽑습니다.\n무색 공격 카드를 뽑았다면\n이번 전투 동안 그 카드의 피해량이\n[gold][upg]2[/upg][/gold] 증가합니다.", "cost": null}, "egosword_clararis": {"desc": "[gold]유일[/gold]. [gold]공명[/gold].\n피해를 [gold]6[/gold] 줍니다.\n이 카드가 [gold]뽑을 카드 더미[/gold]에서\n[gold]손[/gold]으로 이동할 때마다,\n모든 적에게\n피해를 [gold]6[/gold] 줍니다.", "cost": null}, "fair_and_square": {"desc": "[gold]판금[/gold]을 [gold][upg]7[/upg][/gold] 얻습니다.\n모든 적이 [gold]방어도[/gold]를 [gold][upg]7[/upg][/gold] 얻습니다.\n모든 적이 [gold]판금[/gold]을 [gold][upg]6[/upg][/gold] 얻습니다.\n[gold]선천성[/gold]", "cost": null}, "flowing_stance_force": {"desc": "무색 공격 카드의 피해량이\n[gold][upg]4[/upg][/gold] 증가합니다.", "cost": null}, "flowing_stance_zenith": {"desc": "[gold]소멸된 카드 더미[/gold]에 있는 모든\n[gold]류심[/gold] 공격 카드를 [gold]손[/gold]으로 가져옵니다.", "cost": 2}, "illusion_sword_dance": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold][upg]6[/upg][/gold]만큼 X번 줍니다.", "cost": null}, "overdrive": {"desc": "체력을 [gold]3[/gold] 잃습니다.\n대상 적이 보유한 [gold]취약[/gold]이\n[gold][upg]3[/upg][/gold]배로 증가합니다.\n[gold]소멸[/gold]", "cost": null}, "raging_dragon_slash": {"desc": "카드를 4장 뽑습니다.\n[gold]손[/gold]에 있는 카드 [gold][upg]1[/upg][/gold]장을\n[gold]뽑을 카드 더미[/gold]에 섞어 넣습니다.", "cost": null}, "rapid_weapon_switch": {"desc": "내 턴 시작 시, 카드를 1장 뽑고\n카드 1장을 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n[gold]선천성[/gold]", "cost": null}, "sentient_blade": {"desc": "[gold]에고소드 클라리스[/gold]를 뽑을 때마다,\n[gold]방어도[/gold]를 [gold][upg]9[/upg][/gold] 얻습니다.", "cost": null}, "sever": {"desc": "모든 적에게 피해를 [gold][upg]5[/upg][/gold] 줍니다.\n이번 턴 동안 모든 적이 [gold]힘[/gold]을 [gold][upg]5[/upg][/gold] 잃습니다.\n[gold]휘발성[/gold]", "cost": null}, "sheathe": {"desc": "카드를 2장 뽑습니다.\n[gold]손[/gold]에 있는 카드 1장을\n[gold]뽑을 카드 더미[/gold] 맨위에 놓습니다.", "cost": null}, "sword_qi_master": {"desc": "[gold]에고소드 클라리스[/gold]가 막히지 않은\n피해를 줄 때마다, [gold]약화[/gold]를 2 부여합니다.", "cost": 0}, "weapon_wielders_zenith": {"desc": "이번 턴에 무색 카드를 사용할 때마다,\n이번 턴 동안 [gold]힘[/gold]을 2 얻습니다.\n[gold]보존[/gold]", "cost": null}, "conversion": {"desc": "공격 카드로 적의 [gold]방어도[/gold]를\n제거한 만큼 [gold]방어도[/gold]를 얻습니다.", "cost": 0}, "despair_tower_visitor": {"desc": "다른 플레이어가 [gold]취약[/gold]을 부여할 때마다,\n[gold]힘[/gold]을 1 얻습니다.\n[gold]선천성[/gold]", "cost": null}, "flowing_stance_neo": {"desc": "적을 무색 카드로 공격할 때마다,\n대상 적이 이번 턴 동안 [gold]힘[/gold]을 1 잃습니다.", "cost": 0}, "hypervigilance": {"desc": "[gold]에고소드 클라리스[/gold]가 막히지 않은\n피해를 줄 때마다, [gold]힘[/gold]을 1 얻습니다.\n[gold]선천성[/gold]", "cost": null}, "indomitable_spirit": {"desc": "이번 턴 동안 잃는 체력이\n[gold]10[/gold]을 넘을 수 없습니다.\n[gold]소멸[/gold]", "cost": 1}, "omnislay_minds_sword": {"desc": "피해를 [gold]6[/gold] 줍니다.\n손에 있는 모든 카드를\n[gold]뽑을 카드 더미[/gold]에 섞어 넣습니다.\n다음 턴에, 공격 카드의 피해량이 2배가 됩니다.", "cost": 0}, "omnislay_shooting_star": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold]8[/gold] 줍니다.\n막히지 않은 피해량만큼 [gold]방어도[/gold]를 얻습니다.", "cost": null}, "rear_attack": {"desc": "[gold]방어도[/gold]를 보유한 적에게 사용하는\n공격 카드의 피해량이 2배로 증가합니다.", "cost": 1}, "telekinetic_swords": {"desc": "이번 턴에 공격 카드를 사용할 때마다,\n무작위 무색 카드를 1장 [gold]손[/gold]으로 가져옵니다.\n이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.\n[gold]소멸[/gold]", "cost": 0}, "ultimate_blade_ethereal_slash": {"desc": "피해를 [gold][upg]13[/upg][/gold] 줍니다.\n대상 적이 [gold]방어도[/gold]를 보유했다면,\n4번 적중합니다.", "cost": null}, "ultimate_blade_lightning": {"desc": "피해를 [gold]10[/gold] 줍니다.\n이번 전투 동안 사용한 무색 카드 수만큼\n피해량이 증가합니다.\n[gold]보존[/gold]", "cost": null}, "ultimate_slay_iron_strike": {"desc": "이번 턴 동안 막히지 않은\n공격 피해를 줄 때마다,\n[gold]취약[/gold]을 1 부여합니다.\n[gold]소멸[/gold]", "cost": 0}, "lightning_draw_sword": {"desc": "모든 적에게 피해를 [gold][upg]15[/upg][/gold] 줍니다.\n보유한 유물 수만큼 피해량이 증가합니다.", "cost": null}, "grandmaster_at_arms": {"desc": null, "cost": 0}, "ultimate_slay_tempest": {"desc": "피해를 [gold][upg]7[/upg][/gold] 줍니다.\n이번 전투 동안 사용한 무색 카드 수만큼\n반복합니다.", "cost": null}, "pentastrike": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold][upg]7[/upg][/gold]만큼 5번 줍니다.", "cost": null}, "state_of_incorporeity": {"desc": "[gold]류심[/gold] 공격 카드를 사용할 때마다,\n[gold]에너지[/gold]를 얻습니다.\n[gold]선천성[/gold]", "cost": null}, "flowing_stance_rise": {"desc": "피해를 [gold][upg]4[/upg][/gold] 줍니다.\n[gold]취약[/gold]을 1 부여합니다.\n[gold]소멸[/gold]", "cost": null}, "flowing_stance_swift": {"desc": "피해를 [gold][upg]4[/upg][/gold]만큼 2번 줍니다.\n[gold]소멸[/gold]", "cost": null}, "flowing_stance_clash": {"desc": "[gold]꿰뚫기[/gold].\n피해를 [gold][upg]4[/upg][/gold] 줍니다.\n[gold]소멸[/gold]", "cost": null}};
+const RELICS         = [{"key": "egosword_clararis_relic", "name": "에고소드 클라리스", "tier": "Starter", "desc": "매 전투 시작 시, [gold]에고소드 클라리스[/gold]를\n[gold]손[/gold]으로 가져옵니다.", "flavor": "\"클레어라는 여성의 혼이 담겨 있다고 하며, 솔도로스와 관계가 있는지는 불명이다.\"", "img": "Soldoros/images/relics/egosword_clararis_relic.png"}, {"key": "awakened_egosword_clararis_relic", "name": "각성: 에고소드 클라리스", "tier": "Ancient", "desc": "매 전투 시작 시, [gold]에고소드 클라리스+[/gold]를\n[gold]손[/gold]으로 가져옵니다.\n[gold]에고소드 클라리스[/gold]가 [gold]뽑을 카드 더미[/gold]에\n섞일 때마다, 가장 위쪽에 배치합니다.", "flavor": "\"클레어의 혼이 깨어나, 솔도로스와 함께 또 다른 경지에 이르렀다.\"", "img": "Soldoros/images/relics/awakened_egosword_clararis_relic.png"}, {"key": "weapon_selector", "name": "웨펀셀렉터", "tier": "Uncommon", "desc": "7번의 전투가 끝날 때마다,\n무작위 유물을 1개 얻습니다.", "flavor": "\"주변의 무기와 공명하여 엄청난 힘을 낸다는 전설의 방어구\"", "img": "Soldoros/images/relics/weapon_selector.png"}, {"key": "demon_slave", "name": "데몬 슬레이브", "tier": "Rare", "desc": "매 전투 시작 시 체력을 1 잃습니다.\n[gold]힘[/gold]을 3 얻습니다.", "flavor": "\"정신이… 윽… 미쳐버릴꺼 같아.\"", "img": "Soldoros/images/relics/demon_slave.png"}, {"key": "golden_hammer", "name": "힘센 난장이의 황금 망치", "tier": "Common", "desc": "획득 시, 비용이 2 이상인\n무작위 카드 3장을 강화합니다.", "flavor": "\"무겁지만 파괴력 한번 대단한데?\"", "img": "Soldoros/images/relics/golden_hammer.png"}, {"key": "hello_guish", "name": "헬로 구위시", "tier": "Common", "desc": "[gold]약화[/gold]를 부여할 때마다,\n[gold]취약[/gold]을 부여합니다.", "flavor": "\"얼음 마법을 다루는 요정 구위시의 축복이 깃들어있다.\"", "img": "Soldoros/images/relics/hello_guish.png"}, {"key": "soldoros_decision", "name": "솔도로스의 선택", "tier": "Uncommon", "desc": "매 전투 시작 시,\n보유한 유물 5개마다 [gold]힘[/gold]을 1 얻습니다.", "flavor": "\"너한테는 이걸 쓰는게 좋겠구나. -솔도로스-\"", "img": "Soldoros/images/relics/soldoros_decision.png"}, {"key": "shapeless_sword_elenore", "name": "무형검 엘레노어", "tier": "Rare", "desc": "[gold]방어도[/gold]를 보유한 적에게 사용하는\n공격 카드의 피해량이 2배로 증가합니다.", "flavor": "\"정해진 형태가 없기 때문에 막았다고 생각한 순간 피해를 입고 만다.\"", "img": "Soldoros/images/relics/shapeless_sword_elenore.png"}, {"key": "halgis_bone_ring", "name": "할기의 본링", "tier": "Rare", "desc": "공격할 의도가 있는 적 상대로 사용하는\n공격 카드의 피해량이 50% 증가합니다.", "flavor": "\"인생 한 방! 뭐 있겠나! 어줍지 않게 두 번, 세 번 할 필요 있나. 오직 한 번이면 족한거야. - 카곤\"", "img": "Soldoros/images/relics/halgis_bone_ring.png"}];
+const POTIONS        = [{"key": "remys_touch", "name": "레미의 손길", "rarity": "Common", "desc": "최대 체력의 10%만큼 체력을 회복합니다.\n[gold]에너지[/gold]를 1 얻습니다.", "flavor": "", "img": "Soldoros/images/potions/remys_touch.png"}, {"key": "danjins_pot", "name": "단진의 항아리", "rarity": "Uncommon", "desc": "[gold]류심[/gold] 승, 쾌, 충을\n[gold]손[/gold]으로 가져옵니다.", "flavor": "", "img": "Soldoros/images/potions/danjins_pot.png"}, {"key": "sharp_eye_potion", "name": "샤프아이 포션", "rarity": "Rare", "desc": "모든 적이 보유한\n[gold]취약[/gold]이 3배로 증가합니다.", "flavor": "", "img": "Soldoros/images/potions/sharp_eye_potion.png"}];
+const DIALOGUES      = [{"npc": "아키텍트", "conversations": [[{"speaker": "솔도로스", "role": "char", "text": "검으로 대화하지."}, {"speaker": "아키텍트", "role": "ancient", "text": "검의 달인이라... 흥미롭군."}], [{"speaker": "솔도로스", "role": "char", "text": "다시 왔다. 이번엔 전력으로 덤벼라."}, {"speaker": "아키텍트", "role": "ancient", "text": "흥... 한 번 더 상대해 주지."}], [{"speaker": "솔도로스", "role": "char", "text": "이곳에서 쌓은 힘, 모두 받아내라."}, {"speaker": "아키텍트", "role": "ancient", "text": "...매번 더 강해지는군."}]]}, {"npc": "니오우", "conversations": [[{"speaker": "니오우", "role": "ancient", "text": "...검사가 왔군. 상처부터 치료해 주지."}], [{"speaker": "니오우", "role": "ancient", "text": "...다시 탑을 오르는군. 수련을 멈추지 않는군."}], [{"speaker": "니오우", "role": "ancient", "text": "...또 왔군. 지칠 줄을 모르는군."}]]}, {"npc": "다브", "conversations": [[{"speaker": "다브", "role": "ancient", "text": "오! 그 많은 무기들... 진짜 웨펀마스터로군요!"}, {"speaker": "솔도로스", "role": "char", "text": "...어디 한번 보지."}], [{"speaker": "다브", "role": "ancient", "text": "어서 오세요! 오늘도 좋은 물건 골라드릴게요."}], [{"speaker": "다브", "role": "ancient", "text": "매번 더 강해지시는 것 같은데... 저도 덩달아 긴장이 되네요."}]]}, {"npc": "노누파이페", "conversations": [[{"speaker": "노누파이페", "role": "ancient", "text": "호오... 처음 보는 얼굴이군. 뭔가 특별한 걸 원하나?"}], [{"speaker": "노누파이페", "role": "ancient", "text": "또 왔군. 마음에 드는 게 있으면 가져가."}], [{"speaker": "노누파이페", "role": "ancient", "text": "이젠 얼굴이 익숙해졌군... 뭘 원하는지도 알 것 같아."}]]}, {"npc": "오로바스", "conversations": [[{"speaker": "오로바스", "role": "ancient", "text": "웨펀마스터가 어떤 무기를 지니고 있는지 궁금하군."}, {"speaker": "솔도로스", "role": "char", "text": "강해지는 데 도움이 된다면 고려하지."}], [{"speaker": "오로바스", "role": "ancient", "text": "다시 왔군. 이번엔 어떤 거래를 원하나?"}], [{"speaker": "오로바스", "role": "ancient", "text": "자네와의 거래는 언제나 흥미롭군."}]]}, {"npc": "파엘", "conversations": [[{"speaker": "파엘", "role": "ancient", "text": "처음이군. 무엇을 찾고 있나, 검사여?"}], [{"speaker": "파엘", "role": "ancient", "text": "돌아왔군. 지난번 것은 쓸 만했나?"}], [{"speaker": "파엘", "role": "ancient", "text": "이제 단골이 된 건가."}]]}, {"npc": "탄스", "conversations": [[{"speaker": "탄스", "role": "ancient", "text": "오오! 처음 보는 얼굴이군. 뭐가 필요한가?"}], [{"speaker": "탄스", "role": "ancient", "text": "또 왔군! 이번엔 뭘 가져가려고?"}], [{"speaker": "탄스", "role": "ancient", "text": "이젠 네 취향을 알 것 같아. 어디 봐볼까."}]]}, {"npc": "테즈카타라", "conversations": [[{"speaker": "테즈카타라", "role": "ancient", "text": "어머, 처음 보는 손님이군요. 뭔가 드실 것 좀 드릴까요?"}, {"speaker": "솔도로스", "role": "char", "text": "...감사하다."}], [{"speaker": "테즈카타라", "role": "ancient", "text": "또 오셨군요. 이번에도 드실 것 준비해 두었어요."}], [{"speaker": "테즈카타라", "role": "ancient", "text": "역시 오셨네요. 드셔야 싸우죠."}]]}, {"npc": "바쿠", "conversations": [[{"speaker": "바쿠", "role": "ancient", "text": "...오, 검사. 필요한 게 있다면 말해."}], [{"speaker": "바쿠", "role": "ancient", "text": "...다시 왔군. 이번엔 뭘 원하나."}], [{"speaker": "바쿠", "role": "ancient", "text": "...매번 오는군. 강해지고 있다는 건 알겠어."}]]}];
+const START          = ["strike_soldoros", "strike_soldoros", "strike_soldoros", "strike_soldoros", "defend_soldoros", "defend_soldoros", "defend_soldoros", "defend_soldoros", "ashe_fork", "upward_slash"];
+
+const ENERGY_LAYERS = [1,2,3,4,5].map(i =>
+  `Soldoros/images/ui/combat/energy_counters/soldoros_energy_layer_${i}.png`
+);
+
+const TYPE_KOR   = {Attack:'공격',Skill:'스킬',Power:'파워',Token:'토큰'};
+const RARITY_KOR = {Basic:'기본',Common:'일반',Uncommon:'고급',Rare:'희귀',Ancient:'고대',Token:'토큰',Starter:'스타터',Boss:'보스'};
+const RARITY_ORDER = ['Basic','Common','Uncommon','Rare','Ancient','Token'];
+
+/* 키워드 → 툴팁 설명 */
+const KEYWORD_TIPS = {
+  '방어도':        { name:'방어도 (Block)', desc:'피해를 흡수합니다. 턴 종료 시 제거됩니다.' },
+  '힘':           { name:'힘 (Strength)', desc:'공격 피해를 증가시킵니다.' },
+  '취약':         { name:'취약 (Vulnerable)', desc:'받는 공격 피해가 50% 증가합니다.' },
+  '약화':         { name:'약화 (Weak)', desc:'가하는 공격 피해가 25% 감소합니다.' },
+  '민첩':         { name:'민첩 (Dexterity)', desc:'방어도 획득량을 증가시킵니다.' },
+  '인공물':       { name:'인공물 (Artifact)', desc:'다음 디버프를 1회 무효화합니다.' },
+  '판금':         { name:'판금 (Plated Armor)', desc:'내 턴 종료 시, 방어도를 획득합니다. 판금은 내 턴 시작 시 1 감소합니다.' },
+  '꿰뚫기':       { name:'꿰뚫기 (Pierce)', desc:'대상 적의 취약을 전부 제거합니다. 제거한 취약마다 이 카드의 피해량이 100% 증가합니다.' },
+  '유일':         { name:'유일 (Unique)', desc:'이 카드는 유일하며 불변합니다.' },
+  '공명':         { name:'공명 (Resonance)', desc:'이 카드를 사용할 때마다, 피해량이 2배로 증가합니다.' },
+  '에너지':       { name:'에너지 (Energy)', desc:'카드를 사용하는 데 필요한 자원입니다.' },
+  '류심':         { name:'류심 (Flowing Stance)', desc:'류심 승·쾌·충 3장의 무색 0코스트 공격 카드를 손으로 가져옵니다.' },
+  '에고소드 클라리스': { name:'에고소드 클라리스', desc:'솔도로스의 자아검. 뽑을 카드 더미에서 손으로 이동할 때마다 모든 적에게 피해를 줍니다.' },
+  '선천성':      { name:'선천성 (Innate)', desc:'매 전투마다 이 카드를 손에 든 상태로 시작합니다.' },
+  '보존':        { name:'보존 (Retain)', desc:'보존된 카드는 턴 종료 시 버려지지 않습니다.' },
+  '휘발성':      { name:'휘발성 (Ethereal)', desc:'이 카드는 이번 턴 종료 시 손에 있다면, 소멸합니다.' },
+  '소멸':        { name:'소멸 (Exhaust)', desc:'전투가 끝날 때까지 제거됩니다.' },
+};
+
+function renderDesc(raw) {
+  if(!raw) return '';
+  const html = raw
+    .replace(/\[upg\](.*?)\[\/upg\]/g,'<span class="upg">$1</span>')
+    .replace(/\[gold\](.*?)\[\/gold\]/gs, (_, inner) => {
+      const plainInner = inner.replace(/<[^>]+>/g,'');
+      const tip = KEYWORD_TIPS[plainInner] || KEYWORD_TIPS[inner];
+      if(tip) {
+        return `<span class="kw" data-tip="1"><span class="kw-popup"><span class="kw-popup-name">${tip.name}</span>${tip.desc}</span>${inner}</span>`;
+      }
+      return `<span class="kw">${inner}</span>`;
+    })
+    .replace(/\[blue\](.*?)\[\/blue\]/g,'<span class="blue">$1</span>')
+    .replace(/\n/g,'<br>');
+  return html;
+}
+
+function makeEnergyStack() {
+  return ENERGY_LAYERS.map(src =>
+    `<img src="${src}" alt="" onerror="this.style.display='none'">`
+  ).join('');
+}
+
+function makeCardHTML(c) {
+  const costLabel = c.cost === -1 ? 'X' : c.cost;
+  return `<div class="card-frame" data-type="${c.type}" data-rarity="${c.rarity}"
+      onclick="openCardModal('${c.key}')">
+    <div class="cost-wrap">
+      <div class="energy-stack">${makeEnergyStack()}</div>
+      <span class="cost-num">${costLabel}</span>
+    </div>
+    <div class="card-banner">
+      <span class="card-name">${c.name}</span>
+    </div>
+    <div class="card-art">
+      <img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.opacity='.1'">
+      <div class="card-type-badge">${TYPE_KOR[c.type]}</div>
+    </div>
+    <div class="card-desc-area">${renderDesc(c.desc)}</div>
+  </div>`;
+}
+
+function renderStartingDeck() {
+  const grid = document.getElementById('starting-grid');
+  grid.innerHTML = START.map(key => {
+    const c = CARDS.find(x=>x.key===key);
+    return c ? makeCardHTML(c) : '';
+  }).join('');
+}
+
+function renderAllCards() {
+  const body = document.getElementById('all-cards-body');
+  document.getElementById('all-card-count').textContent = `(${CARDS.length}장)`;
+  let html = '';
+  for(const rarity of RARITY_ORDER) {
+    const group = CARDS.filter(c=>c.rarity===rarity);
+    if(!group.length) continue;
+    html += `<div class="rarity-group">
+      <div class="rarity-label rl-${rarity}">${RARITY_KOR[rarity].toUpperCase()} (${group.length})</div>
+      <div class="card-grid">${group.map(c=>makeCardHTML(c)).join('')}</div>
+    </div>`;
+  }
+  body.innerHTML = html;
+}
+
+function renderRelics() {
+  const TIER_KOR = {Starter:'스타터',Boss:'보스',Common:'일반',Uncommon:'고급',Rare:'희귀',Ancient:'고대의 존재'};
+  document.getElementById('relic-list').innerHTML = RELICS.map(r => `
+    <div class="relic-row" onclick="openItemModal('relic','${r.key}')">
+      <img class="relic-icon" src="${r.img}" alt="${r.name}" onerror="this.style.opacity='.15'">
+      <div class="relic-main">
+        <div class="relic-name-row">
+          <span class="relic-name">${r.name}</span>
+          <span class="tier-badge tb-${r.tier}">${TIER_KOR[r.tier]||r.tier} 유물</span>
+        </div>
+        <div class="relic-desc">${renderDesc(r.desc)}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderPotions() {
+  const RARITY_COLOR = {Common:'var(--common)',Uncommon:'var(--uncommon)',Rare:'var(--rare)'};
+  document.getElementById('potion-grid').innerHTML = POTIONS.map(p => `
+    <div class="potion-row" onclick="openItemModal('potion','${p.key}')">
+      <img class="potion-icon" src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.15'">
+      <div>
+        <div class="potion-name">${p.name} <span style="font-size:.7rem;color:${RARITY_COLOR[p.rarity]||'var(--dim)'};font-weight:normal">${RARITY_KOR[p.rarity]}</span></div>
+        <div class="potion-desc">${renderDesc(p.desc)}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderDialogues() {
+  document.getElementById('npc-list').innerHTML = DIALOGUES.map(d => `
+    <div class="npc-item">
+      <div class="npc-header" onclick="toggleNpc(this)">
+        <span class="npc-header-name">${d.npc}</span>
+        <span style="display:flex;align-items:center;gap:8px">
+          <span class="npc-conv-count">${d.conversations.length}개 대화</span>
+          <span class="npc-toggle">▼</span>
+        </span>
+      </div>
+      <div class="npc-body">
+        ${d.conversations.map((conv,ci) => `
+          <div class="conv-block">
+            <div class="conv-num">대화 ${ci+1}</div>
+            ${conv.map(line => `
+              <div class="chat-bubble ${line.role}">
+                <div class="bubble-speaker">${line.speaker.toUpperCase()}</div>
+                <div class="bubble-text">${line.text}</div>
+              </div>`).join('')}
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.section-toggle');
+  if(body.classList.contains('hidden')) {
+    body.classList.remove('hidden'); toggle.classList.add('open'); toggle.textContent='▲';
+  } else {
+    body.classList.add('hidden'); toggle.classList.remove('open'); toggle.textContent='▼';
+  }
+}
+
+function toggleNpc(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.npc-toggle');
+  body.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+let _currentCardKey = null;
+let _upgraded = false;
+
+function _applyCardModal(c, upgraded) {
+  const upg = CARD_UPGRADES[c.key];
+  const hasUpg = !!upg;
+  const desc  = (upgraded && upg && upg.desc !== null) ? upg.desc : c.desc;
+  const cost  = (upgraded && upg && upg.cost !== null && upg.cost !== undefined) ? upg.cost : c.cost;
+  const name  = upgraded ? c.name + '+' : c.name;
+
+  const frame = document.getElementById('cm-card-frame');
+  frame.dataset.type = c.type;
+  document.getElementById('cm-energy-stack').innerHTML = makeEnergyStack();
+  const costEl = document.getElementById('cm-cost-num');
+  costEl.textContent = cost === -1 ? 'X' : cost;
+  const costChanged = upgraded && upg && upg.cost !== null && upg.cost !== undefined && upg.cost !== c.cost;
+  costEl.style.color = costChanged ? '#5cdd5c' : '';
+  const titleEl = document.getElementById('cm-title');
+  titleEl.textContent = name;
+  titleEl.style.color = upgraded ? '#5cdd5c' : '';
+  document.getElementById('cm-img').src = c.img;
+  document.getElementById('cm-type-badge').textContent = TYPE_KOR[c.type];
+  document.getElementById('cm-desc-card').innerHTML = renderDesc(desc);
+  const nameEl = document.getElementById('cm-name');
+  nameEl.textContent = upgraded ? c.name + '+' : c.name;
+  nameEl.style.color = upgraded ? '#5cdd5c' : '';
+  document.getElementById('cm-meta').innerHTML =
+    `<span class="cmodal-meta-item"><span class="meta-dot" style="background:var(--${c.type.toLowerCase()})"></span>${TYPE_KOR[c.type]}</span>` +
+    `<span class="cmodal-meta-item">·</span>` +
+    `<span class="cmodal-meta-item">${RARITY_KOR[c.rarity]}</span>` +
+    `<span class="cmodal-meta-item">·</span>` +
+    `<span class="cmodal-meta-item">솔도로스</span>`;
+  document.getElementById('cm-desc-text').innerHTML = renderDesc(desc);
+
+  const btn = document.getElementById('cm-upg-btn');
+  btn.style.display = hasUpg ? '' : 'none';
+  btn.classList.toggle('active', upgraded);
+}
+
+function openCardModal(key) {
+  const c = CARDS.find(x=>x.key===key);
+  if(!c) return;
+  _currentCardKey = key;
+  _upgraded = false;
+  _applyCardModal(c, false);
+  document.getElementById('card-modal').classList.add('open');
+}
+
+function toggleUpgrade() {
+  const c = CARDS.find(x=>x.key===_currentCardKey);
+  if(!c) return;
+  _upgraded = !_upgraded;
+  _applyCardModal(c, _upgraded);
+}
+
+function openItemModal(type, key) {
+  const items = type==='relic' ? RELICS : POTIONS;
+  const item = items.find(x=>x.key===key);
+  if(!item) return;
+  const TIER_KOR = {Starter:'스타터',Boss:'보스',Common:'일반',Uncommon:'고급',Rare:'희귀',Ancient:'고대의 존재'};
+  document.getElementById('im-icon').src = item.img;
+  document.getElementById('im-name').textContent = item.name;
+  const meta = type==='relic'
+    ? `${TIER_KOR[item.tier]||item.tier} 유물 · 솔도로스`
+    : `${RARITY_KOR[item.rarity]} 포션 · 솔도로스`;
+  document.getElementById('im-meta').textContent = meta;
+  document.getElementById('im-desc').innerHTML = renderDesc(item.desc);
+  const flavorEl = document.getElementById('im-flavor');
+  flavorEl.textContent = item.flavor || '';
+  flavorEl.style.display = item.flavor ? '' : 'none';
+  document.getElementById('item-modal').classList.add('open');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open') }
+function closeModalBg(e,id) { if(e.target===document.getElementById(id)) closeModal(id) }
+
+renderStartingDeck();
+renderAllCards();
+renderRelics();
+renderPotions();
+renderDialogues();
+</script>
+</body>
+</html>
